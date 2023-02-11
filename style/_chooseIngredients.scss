@@ -110,7 +110,7 @@
             top: 0;
             left: 5px;
           }
-          img{
+          img {
             // width: 60px;
             // height: 60px;
             object-fit: contain;
@@ -119,6 +119,7 @@
             // width: 15%;
             // aspect-ratio: 3/2;
             cursor: pointer;
+            z-index: 1;
           }
           .right_side_line {
             position: absolute;
@@ -152,6 +153,14 @@
         &_6 {
           //   background-color: blue;
           top: calc($middle_section_height * 5);
+          img {
+            &:nth-child(2) {
+              bottom: -5px;
+            }
+            &:nth-child(3) {
+              bottom: -10px;
+            }
+          }
         }
         &_7 {
           //   background-color: blue;
@@ -278,6 +287,7 @@
         border: $fridge_side_border solid black;
         border-top: transparent;
         border-bottom: transparent;
+        z-index: 3;
 
         &::before {
           content: "";
