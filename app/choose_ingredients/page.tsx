@@ -1,3 +1,6 @@
+import FridgeMiddleBody from "@/components/fridge/middle";
+import Image from "next/image";
+
 export default function ChooseIngredients() {
   return (
     <main>
@@ -21,34 +24,7 @@ export default function ChooseIngredients() {
               </div>
             </div>
             {/* Main Section */}
-            <div className="middle">
-              <div className="middle_ middle_1">
-                <div className="right_side_line"></div>
-              </div>
-              <div className="middle_ middle_2">
-                <div className="right_side_line"></div>
-              </div>
-              <div className="middle_ middle_3">
-                <div className="right_side_line"></div>
-              </div>
-              <div className="middle_ middle_4">
-                <div className="right_side_line"></div>
-              </div>
-              <div className="middle_ middle_5">
-                <div className="right_side_line"></div>
-              </div>
-              <div className="middle_ middle_6">
-                <div className="right_side_line"></div>
-              </div>
-              <div className="middle_ middle_7">
-                <div className="right_side_line"></div>
-              </div>
-              <div className="middle_ middle_8">
-                <div className="right_side_line"></div>
-              </div>
-              {/* <div className="middle_ middle_9"></div>
-              <div className="middle_ middle_10"></div> */}
-            </div>
+            <FridgeMiddleBody />
             <div className="right_body">
               {/* Right Products */}
               <div className="right">
