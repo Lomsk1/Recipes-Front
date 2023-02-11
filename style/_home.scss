@@ -1,0 +1,80 @@
+.home_introduce {
+  min-height: 100vh;
+  @include flexCenter(column);
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+  @include backgroundFixed("https://wallpapercave.com/wp/wp9268246.jpg");
+  .starter_filter {
+    position: absolute;
+    height: 100%;
+    background-color: black;
+    width: 100%;
+    z-index: 2;
+    mix-blend-mode: multiply;
+    // @include flexCenter(row);
+    .inner {
+      width: 140vw;
+      height: 140vw;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      background-color: white;
+      transform: translate(-50%, -50%) scale(0);
+      border-radius: 50%;
+    }
+  }
+  .introduction {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    h1 {
+      @include font_noto;
+      letter-spacing: 3px;
+      font-size: 3em;
+      font-weight: 900;
+      margin: 0;
+      transform: translateX(-100px);
+      opacity: 0;
+      color: $white_color;
+      @media (max-width: 1420px) {
+        font-size: 2em;
+      }
+      @media (max-width: 1120px) {
+        width: 80%;
+      }
+      @media (max-width: 440px) {
+        font-size: 1.4em;
+      }
+      span:first-child {
+        transform: scale(4);
+      }
+    }
+    p {
+      @include font_noto;
+      letter-spacing: 2px;
+      font-size: 1.1em;
+      margin: 30px 0;
+      transform: translateX(100px);
+      opacity: 0;
+      color: $light_white;
+      @media (max-width: 1420px) {
+        font-size: 1em;
+      }
+      @media (max-width: 1120px) {
+        width: 80%;
+      }
+      @media (max-width: 440px) {
+        font-size: 0.8em;
+      }
+    }
+    a {
+      transform: translateY(100px);
+      opacity: 0;
+      width: 150px;
+      height: 30px;
+      background-color: red;
+      text-decoration: none;
+    }
+  }
+}

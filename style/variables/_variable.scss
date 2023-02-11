@@ -1,0 +1,30 @@
+$black_color: #0a0908;
+$white_color: #F4F4F6;
+$light_white: #E6E6E9;
+
+$fridge_color: #44485D;
+
+@mixin flexCenter($direction) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: $direction;
+}
+
+@mixin font_noto {
+  font-family: var(--noto_georgian);
+}
+@mixin backgroundFixed($url) {
+  background: url($url);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+body {
+  background-color: $black_color;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
