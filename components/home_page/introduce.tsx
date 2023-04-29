@@ -45,7 +45,7 @@ function HomeIntroduce() {
           ეს არის პლატფორმა, სადაც შეგიძლიათ სასურველი რეცეპტის მოძიება
           შეზღუდული იგრედიენტებით!
         </p>
-        <Link href={"/choose_ingredients"} id="start_">
+        <Link href={"/main-page"} id="start_">
           დაწყება
         </Link>
       </div>

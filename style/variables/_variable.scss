@@ -1,8 +1,11 @@
 $black_color: #0a0908;
-$white_color: #F4F4F6;
-$light_white: #E6E6E9;
+$white_color: #f4f4f6;
+$light_white: #e6e6e9;
+$grey: #dad7cd;
 
-$fridge_color: #44485D;
+$dark_green: #344e41;
+$light_blue: #0a9396;
+$dark_blue: #14213d;
 
 @mixin flexCenter($direction) {
   display: flex;
@@ -12,7 +15,7 @@ $fridge_color: #44485D;
 }
 
 @mixin font_noto {
-  font-family: var(--noto_georgian);
+  font-family: var(--font-georgia);
 }
 @mixin backgroundFixed($url) {
   background: url($url);
@@ -24,7 +27,30 @@ $fridge_color: #44485D;
 
 body {
   background-color: $black_color;
+  @include font_noto;
+}
+body,
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  &::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.1);
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.2);
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.4);
+  }
+  &::-webkit-scrollbar-thumb:active {
+    background: rgba(0, 0, 0, 0.9);
+  }
 }
