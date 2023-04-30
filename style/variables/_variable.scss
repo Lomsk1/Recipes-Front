@@ -5,7 +5,14 @@ $grey: #dad7cd;
 
 $dark_green: #344e41;
 $light_blue: #0a9396;
+$extra_light_blue: #94d2bd;
 $dark_blue: #14213d;
+$dark_blue_bg: #0f172a;
+
+$black_bg_light: #00000013;
+
+$dark_orange: #fb8500;
+$light_orange: #ffb703;
 
 @mixin flexCenter($direction) {
   display: flex;

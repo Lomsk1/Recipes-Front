@@ -2,10 +2,13 @@
   min-height: 100vh;
   // display: flex;
   display: grid;
-  grid-template-columns:1fr 4fr;
+  grid-template-columns: 1fr 4fr;
+  @media (max-width: 700px) {
+    grid-template-columns: 1fr;
+  }
 }
 .main_sidebar {
- min-width: 260px;
+  min-width: 260px;
   height: 100vh;
   background-color: cadetblue;
   display: flex;
@@ -13,6 +16,12 @@
   overflow-y: auto;
   position: sticky;
   top: 0;
+  @media (max-width: 700px) {
+    display: none;
+    position: fixed;
+    width: 100%;
+    z-index: 4;
+  }
 
   .sidebar_navigation {
     min-height: 100px;

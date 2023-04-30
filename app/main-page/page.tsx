@@ -1,23 +1,30 @@
-import Image from "next/image";
-import userAvatar from "../../assets/icons/user_avatar.png";
+import ChosenInformation from "@/components/main-page/choosenInformation";
+import MainPageHeader from "@/components/main-page/header";
+import ReceiptsBox from "@/components/main-page/receipts";
+import ReceptSide from "@/components/sideRecept";
 
 export default function ChooseIngredients() {
   return (
     <main className="main_page">
       {/* Header && NAvigation */}
-      <header className="header_main_page">
-        <nav>
-          <h1>რეცეპტორი</h1>
+      <MainPageHeader />
 
-          <ul>
-            <li>
-              <div>
-                <Image src={userAvatar} alt="user avatar"></Image>
-              </div>
-            </li>
-          </ul>
-        </nav>
-      </header>
+      {/* User Choose Information */}
+      <ChosenInformation />
+
+      {/* Receipts */}
+
+      <section className="receipts_container">
+        <ReceiptsBox />
+        <ReceiptsBox />
+        <ReceiptsBox />
+        <ReceiptsBox />
+      </section>
+
+      {/* Side Detailed Recept */}
+      <section className="receipt_side_detailed">
+        {/* <ReceptSide /> */}
+      </section>
     </main>
   );
 }
