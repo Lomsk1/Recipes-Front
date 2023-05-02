@@ -1,10 +1,21 @@
+"use client";
+
 import Image from "next/image";
 import testImg from "../../assets/images/test.jpg";
 import heartEmptyIcon from "../../assets/svg/heartEmpty.svg";
 import linkIcon from "../../assets/svg/export.svg";
 import heartFullIcon from "../../assets/svg/heartFull.svg";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { setSideReceiptToggle } from "@/redux/client/receipts/slice";
+
+interface ReduxTypes {
+  sideReceiptIsOpen: boolean;
+}
 
 function ReceiptsBox() {
+  const redux: ReduxTypes = useAppSelector((state) => state.receipt);
+  const dispatch = useAppDispatch();
+
   return (
     <div className="receipt_box">
       {/* Image */}
@@ -13,7 +24,13 @@ function ReceiptsBox() {
       </div>
       {/* Information */}
       <div className="information">
-        <h4>საჭმლის სათაური (სახელი)</h4>
+        <h4
+          onClick={() =>
+            dispatch(setSideReceiptToggle(!redux.sideReceiptIsOpen))
+          }
+        >
+          საჭმლის სათაური (სახელი)
+        </h4>
         <p>
           მომზადების დრო: <span>30</span> წუთი
         </p>

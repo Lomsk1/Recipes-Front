@@ -15,7 +15,7 @@ const noto = Noto_Sans_Georgian({
 export default function Home() {
   return (
     <main className={noto.variable}>
-      <HomeIntroduce />
+        <HomeIntroduce />
     </main>
   );
 }

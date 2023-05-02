@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import testImage from "../../assets/images/test.jpg";
 import heartEmptyIcon from "../../assets/svg/heartEmpty.svg";
@@ -7,12 +9,19 @@ import clockIcon from "../../assets/svg/alarm-clock.svg";
 import closeIcon from "../../assets/svg/delete.svg";
 import checkIcon from "../../assets/svg/circle-check-solid.svg";
 import Link from "next/link";
+import { useAppDispatch } from "@/store/hooks";
+import { setSideReceiptToggle } from "@/redux/client/receipts/slice";
 
 function ReceptSide() {
+  const dispatch = useAppDispatch();
+
   return (
     <div className="side_receipts_box">
       {/* Close */}
-      <button className="close">
+      <button
+        className="close"
+        onClick={() => dispatch(setSideReceiptToggle(false))}
+      >
         <Image src={closeIcon} alt="close" width={40} height={40}></Image>
       </button>
       {/* Image */}

@@ -401,3 +401,135 @@
     }
   }
 }
+
+.comment_section {
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  h2 {
+    font-size: 1.5rem;
+    letter-spacing: 1.5px;
+    color: $light_white;
+  }
+  hr {
+    width: 100% !important;
+  }
+  .main_form {
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    gap: 20px;
+    textarea {
+      outline: none;
+      padding: 20px;
+      resize: none;
+      min-height: 120px;
+      width: 100%;
+      background-color: transparent;
+      border-radius: 10px;
+      transition: 500ms;
+      color: $white_color;
+
+      &:focus {
+        border-color: $light_orange;
+        transition: 500ms;
+      }
+    }
+    button {
+      padding: 10px 40px;
+      width: fit-content;
+      cursor: pointer;
+      align-self: flex-end;
+      color: $white_color;
+      transition: 500ms;
+      background-color: transparent;
+      border: 1px solid $white_color;
+      border-radius: 10px;
+
+      &:hover {
+        border-color: $light_orange;
+        transition: 500ms;
+        color: $dark_orange;
+      }
+    }
+  }
+  .sorting {
+    padding: 20px;
+    select {
+      float: right;
+      padding: 5px 10px;
+      cursor: pointer;
+      background-color: transparent;
+      color: $white_color;
+      border-radius: 7px;
+      outline: none;
+      option{
+        background: $black_color;
+      }
+    }
+  }
+  aside {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    ._box {
+      display: flex;
+      flex-direction: column;
+      .user {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        padding: 5px 20px;
+
+        img {
+          border-radius: 50%;
+          overflow: hidden;
+          object-fit: contain;
+          object-position: center;
+        }
+        a {
+          text-decoration: none;
+          font-size: 1.1rem;
+          transition: 500ms;
+          letter-spacing: 2px;
+          color: $light_white;
+          &:hover {
+            transition: 500ms;
+            color: $light_orange;
+          }
+        }
+      }
+      .date {
+        padding: 5px 20px;
+        p {
+          font-size: 0.8rem;
+          letter-spacing: 1px;
+          color: $grey;
+        }
+      }
+      .text {
+        padding: 5px 20px;
+        margin-top: 10px;
+        color: $white_color;
+        p {
+          font-size: 0.9rem;
+          letter-spacing: 1px;
+        }
+      }
+      .actions {
+        padding: 5px 20px;
+        display: flex;
+        gap: 10px;
+        img{
+          cursor: pointer;
+        }
+        p {
+          font-size: 0.9rem;
+          letter-spacing: 1px;
+          color: $dark_Red;
+        }
+      }
+    }
+  }
+}

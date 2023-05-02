@@ -1,6 +1,8 @@
 import "../style/main.scss";
 
 import { Noto_Serif_Georgian } from "@next/font/google";
+import { Provider } from "react-redux";
+import { store } from "../store/store";
 
 const Noto = Noto_Serif_Georgian({
   subsets: ["georgian"],
@@ -20,7 +22,11 @@ export default function RootLayout({
         head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
       */}
       <head />
-      <body>{children}</body>
+      <body>
+        {/* <Provider store={store}> */}
+          {children}
+          {/* </Provider> */}
+      </body>
     </html>
   );
 }

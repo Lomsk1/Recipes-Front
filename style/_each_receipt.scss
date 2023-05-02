@@ -1,0 +1,208 @@
+.each_receipt_title {
+  min-height: calc(100vh - 100px);
+  display: flex;
+  @media (max-width: 650px) {
+    flex-direction: column;
+  }
+  aside {
+    @include flexCenter(column);
+    width: 50%;
+    text-align: center;
+    padding: 10px;
+    gap: 20px;
+    @media (max-width: 750px) {
+      width: 100%;
+    }
+    .re {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+    h1 {
+      font-size: 2.5rem;
+      letter-spacing: 2px;
+      font-weight: 700;
+      color: $light_white;
+      @media (max-width: 1100px) {
+        font-size: 2rem;
+      }
+      @media (max-width: 750px) {
+        font-size: 1.5rem;
+      }
+    }
+    h3 {
+      font-size: 0.9rem;
+      letter-spacing: 1.5px;
+      font-weight: 700;
+      color: $white_color;
+      @media (max-width: 750px) {
+        font-size: 0.8rem;
+      }
+    }
+    h4 {
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+      font-weight: 500;
+      color: $grey;
+      @media (max-width: 750px) {
+        font-size: 0.7rem;
+      }
+    }
+    .favorite {
+      display: flex;
+      gap: 7px;
+      align-items: center;
+      margin-bottom: 20px;
+      p {
+        font-size: 1rem;
+        letter-spacing: 1px;
+        cursor: pointer;
+        transition: 500ms;
+        color: $grey;
+        @media (max-width: 750px) {
+          font-size: 0.8rem;
+        }
+        &:hover {
+          transition: 500ms;
+          text-decoration: underline;
+          color: $extra_light_blue;
+        }
+      }
+    }
+    a {
+      text-decoration: none;
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+      transition: 500ms;
+      color: $light_Red;
+      &:hover {
+        transition: 500ms;
+        text-decoration: underline;
+        color: $dark_Red;
+      }
+    }
+  }
+}
+.each_receipt_description {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  padding: 0 20px;
+  margin-top: 50px;
+  gap: 20px;
+  @media (max-width: 700px) {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .right_side {
+    @media (max-width: 700px) {
+      order: 1;
+    }
+    .for_sticky {
+      position: sticky;
+      top: 0;
+    }
+    table {
+      height: fit-content;
+      text-align: center;
+      width: 100%;
+      tr {
+      }
+      td {
+        color: $light_white;
+        padding: 10px 0;
+      }
+      th {
+        color: $light_white;
+      }
+    }
+    .nutrition {
+      margin-top: 20px;
+      h3 {
+        font-size: 1.3rem;
+        letter-spacing: 1px;
+        margin-bottom: 20px;
+        color: $light_white;
+      }
+      ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        li {
+          display: flex;
+          justify-content: space-between;
+          p,
+          span {
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            color: $white_color;
+          }
+          span {
+            font-weight: 700;
+            color: $extra_light_blue;
+            font-size: 1rem;
+          }
+        }
+      }
+    }
+  }
+  .description {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    @media (max-width: 700px) {
+      order: 2;
+    }
+    h5 {
+      font-size: 1.1rem;
+      letter-spacing: 2px;
+      color: $light_white;
+    }
+    hr {
+      margin: 10px 0;
+      width: 50%;
+    }
+    ._short {
+      p {
+        font-size: 0.9rem;
+        margin-top: 20px;
+        letter-spacing: 1px;
+        text-align: justify;
+        color: $white_color;
+      }
+    }
+    .ingredients {
+      ul {
+        list-style-type: circle;
+        list-style-position: inside;
+        li {
+          color: $white_color;
+          font-size: 1rem;
+          letter-spacing: 1px;
+        }
+      }
+    }
+    .making_process {
+      .step {
+        h4 {
+          font-size: 1.2rem;
+          letter-spacing: 1px;
+          margin-bottom: 20px;
+          color: $light_white;
+        }
+        p {
+          margin-bottom: 30px;
+          font-size: 0.9rem;
+          letter-spacing: 1px;
+          color: $white_color;
+        }
+      }
+    }
+    .comment {
+      margin-top: 50px;
+    }
+  }
+}
