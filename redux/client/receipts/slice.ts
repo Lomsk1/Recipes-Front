@@ -1,21 +1,26 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-interface ReceiptsTypes {
-  sideReceiptIsOpen: boolean;
+interface RecipesTypes {
+  sideRecipeIsOpen: boolean;
+  filteredRecipe: string[];
 }
 
-export const receiptSlice = createSlice({
-  name: "receipt",
-  initialState: <ReceiptsTypes>{
-    sideReceiptIsOpen: false,
+export const recipeSlice = createSlice({
+  name: "recipe",
+  initialState: <RecipesTypes>{
+    sideRecipeIsOpen: false,
+    filteredRecipe: [],
   },
   reducers: {
-    setSideReceiptToggle: (state, action: PayloadAction<boolean>) => {
-      state.sideReceiptIsOpen = action.payload;
+    setSideRecipeToggle: (state, action: PayloadAction<boolean>) => {
+      state.sideRecipeIsOpen = action.payload;
+    },
+    setFilteredRecipe: (state, action: PayloadAction<string[]>) => {
+      state.filteredRecipe = action.payload;
     },
   },
 });
 
-export const { setSideReceiptToggle } = receiptSlice.actions;
+export const { setSideRecipeToggle, setFilteredRecipe } = recipeSlice.actions;
 
-export default receiptSlice.reducer;
+export default recipeSlice.reducer;

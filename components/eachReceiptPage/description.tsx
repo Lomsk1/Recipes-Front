@@ -1,6 +1,22 @@
-import ReceiptCommentSection from "../coments";
+import RecipeCommentSection from "../coments";
+import { RecipeTypes } from "../types/types";
 
-function EachReceiptDescription() {
+interface RecipeProps
+  extends Omit<
+    RecipeTypes,
+    "recipeCategory" | "author" | "createdAt" | "image" | "_id" | "name" | ""
+  > {}
+
+function EachRecipeDescription({
+  shortDescription,
+  ingredients,
+  cookingProcess,
+  necessaryIngredients,
+  difficulty,
+  nutrition,
+  cookingTime,
+  portion,
+}: RecipeProps) {
   return (
     <>
       <section className="each_receipt_description">
@@ -9,26 +25,25 @@ function EachReceiptDescription() {
           <div className="_short">
             <h5>მოკლე აღწერა:</h5>
             <hr />
-            <p>
-              ძალიან მაგარი პროდუქტი. ძალიან მაგარი პროდუქტი. ძალიან მაგარი
-              პროდუქტი. ძალიან მაგარი პროდუქტი. ძალიან მაგარი პროდუქტი. ძალიან
-              მაგარი პროდუქტი. ძალიან მაგარი პროდუქტი. ძალიან მაგარი პროდუქტი.
-              ძალიან მაგარი პროდუქტი. ძალიან მაგარი პროდუქტი. ძალიან მაგარი
-              პროდუქტი. ძალიან მაგარი პროდუქტი. ძალიან მაგარი პროდუქტი. ძალიან
-              მაგარი პროდუქტი. ძალიან მაგარი პროდუქტი. ძალიან მაგარი პროდუქტი.
-              ძალიან მაგარი პროდუქტი. ძალიან მაგარი პროდუქტი. ძალიან მაგარი
-              პროდუქტი. ძალიან მაგარი პროდუქტი. ძალიან მაგარი პროდუქტი.
-            </p>
+            <p>{shortDescription && shortDescription}</p>
           </div>
           {/* Ingredients */}
           <div className="ingredients">
             <h5>ინგრედიენტები:</h5>
             <hr />
             <ul>
-              <li>1 ჩ/კ შაქარი</li>
-              <li>2 ს/კ ზეთი</li>
-              <li>400გ კარაქი</li>
-              <li>1კგ ფქვილი</li>
+              {necessaryIngredients &&
+                necessaryIngredients.length > 0 &&
+                necessaryIngredients.map(
+                  (data: { _id: string; name: string }) => (
+                    <li key={data._id}>{data.name}</li>
+                  )
+                )}
+              {necessaryIngredients &&
+                necessaryIngredients.length === 0 &&
+                ingredients.map((data: { _id: string; name: string }) => (
+                  <li key={data._id}>{data.name}</li>
+                ))}
             </ul>
           </div>
           {/* Making Process */}
@@ -36,38 +51,20 @@ function EachReceiptDescription() {
             <h5>მომზადების პროცედურა:</h5>
             <hr />
             {/* Steps */}
-            <div className="step">
-              <h4>ნაბიჯი 1</h4>
-              <p>
-                მოათავსეთ თარო ღუმელში და გააცხელეთ 375°F-მდე. წაუსვით კარაქი ან
-                შეასხურეთ 12 ფორმა ჩვეულებრივი ზომის მაფინის ტაფაში ან მოათავსეთ
-                ფორმებს სილიკონის ან ქაღალდის მაფინის საფენები. მაფინის ტაფა
-                მოათავსეთ საცხობ ფირფიტაზე.
-              </p>
-            </div>
-            <div className="step">
-              <h4>ნაბიჯი 2</h4>
-              <p>
-                მოათავსეთ თარო ღუმელში და გააცხელეთ 375°F-მდე. წაუსვით კარაქი ან
-                შეასხურეთ 12 ფორმა ჩვეულებრივი ზომის მაფინის ტაფაში ან მოათავსეთ
-                ფორმებს სილიკონის ან ქაღალდის მაფინის საფენები. მაფინის ტაფა
-                მოათავსეთ საცხობ ფირფიტაზე.
-              </p>
-            </div>
-            <div className="step">
-              <h4>ნაბიჯი 1</h4>
-              <p>
-                მოათავსეთ თარო ღუმელში და გააცხელეთ 375°F-მდე. წაუსვით კარაქი ან
-                შეასხურეთ 12 ფორმა ჩვეულებრივი ზომის მაფინის ტაფაში ან მოათავსეთ
-                ფორმებს სილიკონის ან ქაღალდის მაფინის საფენები. მაფინის ტაფა
-                მოათავსეთ საცხობ ფირფიტაზე.
-              </p>
-            </div>
+            {cookingProcess &&
+              cookingProcess.map(
+                (data: { _id: string; description: string; step: number }) => (
+                  <div className="step" key={data._id}>
+                    <h4>ნაბიჯი {data.step}</h4>
+                    <p>{data.description}</p>
+                  </div>
+                )
+              )}
           </div>
 
           {/* Section */}
           <div className="comment">
-            <ReceiptCommentSection />
+            <RecipeCommentSection />
           </div>
         </div>
 
@@ -84,9 +81,9 @@ function EachReceiptDescription() {
               </thead>
               <tbody>
                 <tr>
-                  <td>მარტივი</td>
-                  <td>45 წუთი</td>
-                  <td>10</td>
+                  <td>{difficulty && difficulty}</td>
+                  <td>{cookingTime && cookingTime}</td>
+                  <td>{portion && portion}</td>
                 </tr>
               </tbody>
             </table>
@@ -95,22 +92,21 @@ function EachReceiptDescription() {
             <div className="nutrition">
               <h3>საკვები შემადგენლობა:</h3>
               <ul>
-                <li>
-                  <p>კალორია</p>
-                  <span>235</span>
-                </li>
-                <li>
-                  <p>ცხიმი</p>
-                  <span>12 გ</span>
-                </li>
-                <li>
-                  <p>ნახშირწყლები</p>
-                  <span>23 გ</span>
-                </li>
-                <li>
-                  <p>პროტეინი</p>
-                  <span>11 გ</span>
-                </li>
+                {nutrition && nutrition.length > 0 ? (
+                  nutrition.map(
+                    (data: { _id: string; name: string; weight: number }) => (
+                      <li key={data._id}>
+                        <p>{data.name}</p>
+                        <span>{data.weight} გ</span>
+                      </li>
+                    )
+                  )
+                ) : (
+                  <li>
+                    <p>ინფორმაცია ვერ მოიძებნა</p>
+                    <span>404</span>
+                  </li>
+                )}
               </ul>
             </div>
           </div>
@@ -120,4 +116,4 @@ function EachReceiptDescription() {
   );
 }
 
-export default EachReceiptDescription;
+export default EachRecipeDescription;

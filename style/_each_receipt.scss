@@ -108,6 +108,8 @@
       height: fit-content;
       text-align: center;
       width: 100%;
+      background-color: $dark_blue_bg;
+      border-radius: 6px;
       tr {
       }
       td {
@@ -116,6 +118,8 @@
       }
       th {
         color: $light_white;
+        border-bottom: 1px solid $extra_light_blue;
+        padding-bottom: 10px;
       }
     }
     .nutrition {
@@ -131,9 +135,15 @@
         display: flex;
         flex-direction: column;
         gap: 15px;
+        background-color: $dark_blue_bg;
+        border-radius: 6px;
+        overflow: hidden;
+        padding: 5px;
         li {
           display: flex;
           justify-content: space-between;
+          border-bottom: 1px solid $dark_Red;
+          padding-bottom: 5px;
           p,
           span {
             font-size: 0.9rem;

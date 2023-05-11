@@ -407,6 +407,7 @@
   display: flex;
   flex-direction: column;
   gap: 30px;
+  padding-bottom: 30px;
   h2 {
     font-size: 1.5rem;
     letter-spacing: 1.5px;
@@ -464,7 +465,7 @@
       color: $white_color;
       border-radius: 7px;
       outline: none;
-      option{
+      option {
         background: $black_color;
       }
     }
@@ -476,6 +477,8 @@
     ._box {
       display: flex;
       flex-direction: column;
+      border-bottom: 1px solid $grey;
+      padding-bottom: 10px;
       .user {
         display: flex;
         align-items: center;
@@ -521,7 +524,7 @@
         padding: 5px 20px;
         display: flex;
         gap: 10px;
-        img{
+        img {
           cursor: pointer;
         }
         p {
@@ -531,5 +534,24 @@
         }
       }
     }
+  }
+}
+.skeletonClass {
+}
+.p_white {
+  color: $dark_Red;
+  font-weight: 700;
+  letter-spacing: 1px;
+  font-size: 0.8rem;
+}
+.zero_info {
+  @include flexCenter(column);
+  width: fit-content;
+  margin: 0 auto;
+  p {
+    color: $dark_Red;
+    font-weight: 700;
+    letter-spacing: 1px;
+    font-size: 0.8rem;
   }
 }

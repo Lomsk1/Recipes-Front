@@ -122,11 +122,34 @@
   }
   .amount_of_dishes {
     margin-top: 20px;
+    padding: 5px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    button {
+      padding: 10px 40px;
+      width: fit-content;
+      background-color: transparent;
+      color: $white_color;
+      letter-spacing: 1px;
+      border: 1px solid transparent;
+      border-bottom: 1px solid $dark_orange;
+      transition: 500ms;
+      cursor: pointer;
+      &:hover {
+        border-radius: 5px;
+
+        transition: 500ms;
+        border: 1px solid $dark_orange;
+      }
+    }
+    hr {
+      margin: 20px 0;
+    }
     h2 {
       font-size: 1.3rem;
       color: $white_color;
       letter-spacing: 2px;
-      padding: 5px 20px;
       span {
         color: $light_blue;
       }

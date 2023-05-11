@@ -1,7 +1,7 @@
-import { receiptSlice } from "./slice";
+import { recipeSlice } from "./slice";
 
-const receiptStore: any = {
-  receipt: receiptSlice.reducer,
+const recipeStore: any = {
+  recipe: recipeSlice.reducer,
 };
 
-export default receiptStore;
+export default recipeStore;

@@ -4,10 +4,36 @@ import Image from "next/image";
 import searchIcon from "../../assets/icons/search-white.png";
 import SidebarIngredientBox from "../sidebarBox";
 import vegetableBg from "../../assets/images/vegetables-pattern-logo-3F32CE0653-seeklogo.com.png";
-import { useAppSelector } from "@/store/hooks";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { useEffect, useState } from "react";
+import { getAllIngredientCategory } from "@/API/ingCategory/action";
+import SkeletonForSidebar from "../skeletons/forSidebar";
+
+interface CategoryTypes {
+  _id: string;
+  name: string;
+  ingredients: {
+    name: string;
+    _id: string;
+  }[];
+}
 
 function MainSideBar() {
   const redux: any = useAppSelector((state) => state.sidebar);
+
+  const dispatch = useAppDispatch();
+  const { categoryData, isLoading }: any = useAppSelector(
+    (state) => state.ingredientCategory
+  );
+
+  useEffect(() => {
+    dispatch(getAllIngredientCategory());
+  }, []);
+
+  // useEffect(() => {
+  //   console.log(categoryData);
+  // }, [categoryData]);
+
   return (
     <section
       className="main_sidebar"
@@ -34,13 +60,19 @@ function MainSideBar() {
 
       {/* Ingredients */}
       <main className="ingredients">
-        <SidebarIngredientBox />
-
-        <SidebarIngredientBox />
-
-        <SidebarIngredientBox />
-
-        <SidebarIngredientBox />
+        {!isLoading ? (
+          categoryData &&
+          categoryData.data.map((data: CategoryTypes) => (
+            <SidebarIngredientBox
+              key={data._id}
+              title={data.name}
+              amount={data.ingredients.length}
+              ingredientData={data.ingredients}
+            />
+          ))
+        ) : (
+          <SkeletonForSidebar />
+        )}
       </main>
     </section>
   );

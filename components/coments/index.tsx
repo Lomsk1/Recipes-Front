@@ -5,7 +5,7 @@ import avatarTwo from "../../assets/images/avatar_1.webp";
 import likeFullIcon from "../../assets/svg/likeFull_.svg";
 import likeIcon from "../../assets/svg/like.svg";
 
-function ReceiptCommentSection() {
+function RecipeCommentSection() {
   return (
     <section className="comment_section">
         <h2>კომენტარები</h2>
@@ -65,4 +65,4 @@ function ReceiptCommentSection() {
   );
 }
 
-export default ReceiptCommentSection;
+export default RecipeCommentSection;

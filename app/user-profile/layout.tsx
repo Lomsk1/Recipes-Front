@@ -4,7 +4,7 @@ import MainPageHeader from "@/components/navigation/header";
 import { store } from "@/store/store";
 import { Provider } from "react-redux";
 
-export default function DashboardLayout({
+export default function UserProfileLayout({
   children,
 }: {
   children: React.ReactNode;
@@ -12,7 +12,6 @@ export default function DashboardLayout({
   return (
     <section>
       <Provider store={store}>
-        <MainPageHeader />
         {children}
       </Provider>
     </section>

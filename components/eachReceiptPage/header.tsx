@@ -5,14 +5,31 @@ import heartFullIcon from "../../assets/svg/heartFull.svg";
 import testImage from "../../assets/images/test.jpg";
 import ReviewComponent from "../review";
 
-function EachReceiptHeader() {
+interface ApiTypes {
+  name: string;
+  author: {
+    _id: string;
+    firstName: string;
+  };
+  createdAt: Date;
+  image: {
+    name: string;
+    destination: string;
+  };
+}
+
+function EachRecipeHeader({ name, author, createdAt, image }: ApiTypes) {
+  const date = new Date(createdAt);
+  const options: any = { month: "long", day: "numeric", year: "numeric" };
+  const changedDate = date.toLocaleDateString("ka-GE", options);
+
   return (
     <section className="each_receipt_title">
       {/* information */}
       <aside>
-        <h1>ორმაგი ჩიზი მიზი გიზი ბურგერიკრაბსი</h1>
-        <h3>ავტორი: გიორგი ლომსიანიძე</h3>
-        <h4>მარტი, 16, 2024</h4>
+        <h1>{name}</h1>
+        <h3>ავტორი: {author.firstName}</h3>
+        <h4>{changedDate && changedDate}</h4>
 
         <div className="favorite">
           <p>ფავორიტებში დამატება</p>
@@ -23,10 +40,16 @@ function EachReceiptHeader() {
       </aside>
       {/* Image */}
       <aside>
-        <Image className="re" src={testImage} alt="image" />
+        <Image
+          src={`${process.env.NEXT_PUBLIC_DB_HOST}/${image.destination}/${image.name}`}
+          alt={name}
+          className="re"
+          width={1000}
+          height={1000}
+        />
       </aside>
     </section>
   );
 }
 
-export default EachReceiptHeader;
+export default EachRecipeHeader;

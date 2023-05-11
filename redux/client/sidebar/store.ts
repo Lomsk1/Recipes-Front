@@ -1,7 +1,7 @@
 import { sidebarSlice } from "./slice";
 
-const sideReceiptStore: any = {
+const sideRecipesStore: any = {
   sidebar: sidebarSlice.reducer,
 };
 
-export default sideReceiptStore;
+export default sideRecipesStore;

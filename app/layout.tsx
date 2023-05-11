@@ -1,4 +1,5 @@
 import "../style/main.scss";
+import 'react-loading-skeleton/dist/skeleton.css'
 
 import { Noto_Serif_Georgian } from "@next/font/google";
 import { Provider } from "react-redux";
