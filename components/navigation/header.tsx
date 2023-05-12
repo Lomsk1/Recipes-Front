@@ -14,7 +14,7 @@ function MainPageHeader() {
             <Link href={"/recipes-by-ingredients"}>რეცეპტორი</Link>
           </li>
           <li>
-            <Link href={"/all-recipes"}>ყველა კერძი</Link>
+            <Link href={"/all-receipts"}>ყველა კერძი</Link>
           </li>
         </ul>
 

@@ -22,6 +22,9 @@ interface RecipeProps
     | "createdAt"
     | "difficulty"
     | "shortDescription"
+    | "like"
+    | "necessaryIngredients"
+    | "portion"
   > {}
 
 function ReceptSide({

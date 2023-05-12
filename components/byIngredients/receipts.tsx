@@ -7,6 +7,7 @@ import heartFullIcon from "../../assets/svg/heartFull.svg";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { setSideRecipeToggle } from "@/redux/client/receipts/slice";
 import { getRecipeById } from "@/API/receipt/action";
+import { useRouter } from 'next/navigation';
 
 interface ReduxTypes {
   sideRecipeIsOpen: boolean;
@@ -32,6 +33,8 @@ function RecipeBox({
   const redux: ReduxTypes = useAppSelector((state) => state.recipe);
 
   const dispatch = useAppDispatch();
+
+  const router = useRouter();
 
   return (
     <div className="receipt_box">
@@ -66,8 +69,8 @@ function RecipeBox({
         <button>
           <Image src={heartEmptyIcon} alt="heart" width={15} height={15} />
         </button>
-        <button>
-          <Image src={linkIcon} alt="heart" width={15} height={15} />
+        <button onClick={() => router.push(`/all-receipts/${id}`)}>
+          <Image src={linkIcon} alt="link" width={15} height={15} />
         </button>
       </div>
     </div>

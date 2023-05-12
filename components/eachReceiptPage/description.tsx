@@ -5,7 +5,26 @@ interface RecipeProps
   extends Omit<
     RecipeTypes,
     "recipeCategory" | "author" | "createdAt" | "image" | "_id" | "name" | ""
-  > {}
+  > {
+  commentData: {
+    _id: string;
+    comment: string;
+    user: {
+      _id: string;
+      firstName: string;
+      avatar: {
+        name: string;
+        destination: string;
+        data: Buffer;
+      };
+    };
+    createdAt: Date;
+    like: {
+      users: string[];
+      amount: number;
+    };
+  }[];
+}
 
 function EachRecipeDescription({
   shortDescription,
@@ -16,6 +35,7 @@ function EachRecipeDescription({
   nutrition,
   cookingTime,
   portion,
+  commentData,
 }: RecipeProps) {
   return (
     <>
@@ -64,7 +84,7 @@ function EachRecipeDescription({
 
           {/* Section */}
           <div className="comment">
-            <RecipeCommentSection />
+            <RecipeCommentSection commentData={commentData} />
           </div>
         </div>
 

@@ -16,6 +16,10 @@ const nextConfig = {
   images: {
     domains: ["localhost", "127.0.0.1"],
   },
+  i18n: {
+    locales: ["ka-GE"],
+    defaultLocale: "ka-GE",
+  },
 };
 
 module.exports = nextConfig;

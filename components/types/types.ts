@@ -44,3 +44,15 @@ export interface IngredientsType {
   name: string;
   _id: string;
 }
+
+export interface CommentTypes {
+  _id: string;
+  comment: string;
+  user: {
+    _id: string;
+    firstName: string;
+    avatar: string;
+  };
+  createdAt: Date;
+  receipt: string;
+}

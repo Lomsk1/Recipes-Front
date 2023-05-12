@@ -15,6 +15,20 @@ async function getData({ id }: any) {
   return res.json();
 }
 
+async function getCommentData({ id }: any) {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_DB_HOST}/api/v1/comment/byRecipe/${id}`,
+    { next: { revalidate: 10 } }
+  );
+
+  // Recommendation: handle errors
+  if (!res.ok) {
+    throw new Error("Failed to fetch data");
+  }
+
+  return res.json();
+}
+
 export default async function EachReceipt({
   params,
   searchParams,
@@ -25,11 +39,14 @@ export default async function EachReceipt({
   const data = await getData({
     id: params.id,
   });
-  console.log(data);
+
+  const commentData = await getCommentData({
+    id: params.id,
+  });
 
   return (
     <>
-      {data.status === "success" && (
+      {data.status === "success" && commentData.status === "success" && (
         <>
           <EachReceiptHeader
             author={data.data.author}
@@ -46,6 +63,7 @@ export default async function EachReceipt({
             nutrition={data.data.nutrition}
             cookingTime={data.data.cookingTime}
             portion={data.data.portion}
+            commentData={commentData.data}
           />
         </>
       )}
