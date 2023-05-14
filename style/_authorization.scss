@@ -1,0 +1,171 @@
+.auth_page_section {
+  @include flexCenter(row);
+  min-height: 100vh;
+  main {
+    width: 90%;
+    max-width: 900px;
+    min-height: 500px;
+    position: relative;
+    display: flex;
+    border: 1px solid $dark_orange;
+    border-radius: 5px;
+    @media (max-width: 600px) {
+      flex-direction: column;
+      min-height: 1000px;
+    }
+    aside {
+      width: calc(50% - 10px);
+      transition: 1s;
+      min-height: calc(100% - 10px);
+      top: 5px;
+      border-radius: 5px;
+      @media (max-width: 600px) {
+        width: calc(100% - 10px);
+        min-height: calc(50% - 10px);
+        top: auto;
+      }
+
+      &:first-child {
+        position: absolute;
+        z-index: 2;
+        @include flexCenter(column);
+        overflow: hidden;
+        background-color: $dark_Red;
+        @media (max-width: 600px) {
+          min-height: calc(35% - 10px);
+        }
+
+        article {
+          text-align: center;
+          position: absolute;
+          padding: 10px;
+          transition: 1s;
+          width: 100%;
+          h1 {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+            color: $light_white;
+          }
+          p {
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            font-weight: 700;
+            color: $white_color;
+          }
+        }
+        button {
+          padding: 10px 30px;
+          margin-top: 30px;
+          border-radius: 20px;
+          background: transparent;
+          border: 1px solid $grey;
+          cursor: pointer;
+          color: $white_color;
+          position: relative;
+          overflow: hidden;
+          font-weight: 700;
+          letter-spacing: 1px;
+          font-size: 0.8rem;
+          transition: 500ms;
+
+          &::before {
+            content: "";
+            width: 100%;
+            height: 50%;
+            position: absolute;
+            background-color: #ffffff2c;
+            top: -50%;
+            left: 0;
+            transition: 500ms;
+          }
+          &::after {
+            content: "";
+            width: 100%;
+            height: 50%;
+            position: absolute;
+            bottom: -50%;
+            left: 0;
+            background-color: #ffffff2c;
+            transition: 500ms;
+          }
+          &:hover {
+            &::after {
+              bottom: 0;
+              transition: 500ms;
+              z-index: -1;
+            }
+            &::before {
+              top: 0;
+              transition: 500ms;
+              z-index: -1;
+            }
+            transition: 500ms;
+            color: $dark_blue_bg;
+            border: 1px solid transparent;
+          }
+        }
+      }
+      &:last-child {
+        background-color: $dark_green;
+        position: absolute;
+        @include flexCenter(column);
+        overflow: hidden;
+        @media (max-width: 600px) {
+          min-height: calc(65% - 10px);
+        }
+        article {
+          display: flex;
+          flex-direction: column;
+          gap: 30px;
+          width: 100%;
+          position: absolute;
+          padding: 10px;
+          transition: 1s;
+
+          h2 {
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+            text-align: center;
+            color: $light_white;
+          }
+          .social {
+            height: 40px;
+            display: flex;
+            justify-content: space-evenly;
+            .box {
+              aspect-ratio: 1/1;
+              cursor: pointer;
+              height: 100%;
+              @include flexCenter(row);
+            }
+          }
+          form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            button {
+              margin: 0 auto;
+            }
+            span {
+              color: $error_red;
+              letter-spacing: 1px;
+              font-size: 0.8rem;
+              font-weight: 700;
+            }
+            a {
+              color: $light_blue;
+              letter-spacing: 1px;
+              margin: 10px 0;
+              transition: 500ms;
+              &:hover {
+                color: $dark_blue_bg;
+                transition: 500ms;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

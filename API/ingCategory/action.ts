@@ -8,7 +8,7 @@ export const getAllIngredientCategory = createAsyncThunk(
       const { data } = await axiosUnAuthorized.get("api/v1/ingredientCategory");
       return data;
     } catch (err: any) {
-      rejectWithValue(err.message);
+     throw rejectWithValue(err.message);
     }
   }
 );

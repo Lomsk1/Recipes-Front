@@ -1,7 +1,7 @@
 import { setIngredients } from "@/redux/client/ingredients/slice";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import allCousin from "../../assets/icons/All cuisines.png";
 
 interface SideTypes {
@@ -21,20 +21,22 @@ function SidebarIngredientBox({ amount, title, ingredientData }: SideTypes) {
 
   const [localIngredients, setLocalIngredients] = useState<any>([]);
 
+  const memoizedDispatch = useCallback(dispatch, [dispatch]);
+
   useEffect(() => {
     const storedData = localStorage.getItem("ingredients");
     if (storedData) {
       setLocalIngredients(JSON.parse(storedData));
-      dispatch(setIngredients(JSON.parse(storedData)));
+      memoizedDispatch(setIngredients(JSON.parse(storedData)));
     }
-  }, []);
+  }, [memoizedDispatch]);
 
   useEffect(() => {
     const numChecked = document.querySelectorAll(
       `input[type="checkbox"][data-group="${title}"]:checked`
     ).length; // Count the number of checked inputs in the current input group
     setChosenIngredients(numChecked);
-  }, [redux]);
+  }, [redux, title]);
 
   const inputHandler = (e: React.ChangeEvent<HTMLInputElement>, data: any) => {
     const checked = e.target.checked;

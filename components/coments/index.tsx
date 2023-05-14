@@ -6,7 +6,7 @@ import avatarOne from "../../assets/images/avatar.webp";
 import avatarTwo from "../../assets/images/avatar_1.webp";
 import likeFullIcon from "../../assets/svg/likeFull_.svg";
 import likeIcon from "../../assets/svg/like.svg";
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, useCallback, useEffect, useState } from "react";
 
 interface PropsTypes {
   commentData: {
@@ -47,6 +47,7 @@ function RecipeCommentSection({ commentData }: PropsTypes) {
       sorted.sort((a, b) => b.like.amount - a.like.amount);
     }
     setSortedData(sorted);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sortValue]);
 
   const options: any = { month: "long", day: "numeric", year: "numeric" };

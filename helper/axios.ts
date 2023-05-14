@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import jwt_decode from "jwt-decode";
 import dayjs from "dayjs";
 
@@ -26,11 +26,11 @@ export const axiosUnauthorizedWithImg = axios.create({
 
 export const axiosUnAuthorized = axios.create({
   baseURL,
+  withCredentials: true,
   headers: {
     Accept: "application/json",
     "Content-Type": "application/json",
   },
-  // withCredentials: "true",
 });
 
 // axiosInstance.interceptors.request.use(async (req) => {

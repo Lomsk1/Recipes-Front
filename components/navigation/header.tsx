@@ -1,8 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import userAvatar from "../../assets/svg/user.svg";
+import { useRouter } from "next/navigation";
 
 function MainPageHeader() {
+  const navigate = useRouter();
   return (
     <header className="header_main_page">
       <nav>
@@ -18,7 +20,7 @@ function MainPageHeader() {
           </li>
         </ul>
 
-        <div className="_user">
+        <div className="_user" onClick={() => navigate.push("/auth")}>
           <Image src={userAvatar} alt="user avatar"></Image>
         </div>
       </nav>

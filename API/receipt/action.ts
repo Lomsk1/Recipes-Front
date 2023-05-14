@@ -8,7 +8,7 @@ export const getAllRecipe = createAsyncThunk(
       const { data } = await axiosUnAuthorized.get("api/v1/recipe");
       return data;
     } catch (err: any) {
-      rejectWithValue(err.message);
+      throw  rejectWithValue(err.message);
     }
   }
 );
@@ -22,7 +22,7 @@ export const getAllFilteredRecipe = createAsyncThunk(
       });
       return data;
     } catch (err: any) {
-      rejectWithValue(err.message);
+      throw rejectWithValue(err.message);
     }
   }
 );
@@ -36,7 +36,7 @@ export const getRecipeById = createAsyncThunk(
       );
       return data;
     } catch (err: any) {
-      rejectWithValue(err.message);
+     throw rejectWithValue(err.message);
     }
   }
 );

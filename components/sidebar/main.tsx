@@ -5,7 +5,7 @@ import searchIcon from "../../assets/icons/search-white.png";
 import SidebarIngredientBox from "../sidebarBox";
 import vegetableBg from "../../assets/images/vegetables-pattern-logo-3F32CE0653-seeklogo.com.png";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { getAllIngredientCategory } from "@/API/ingCategory/action";
 import SkeletonForSidebar from "../skeletons/forSidebar";
 
@@ -26,13 +26,11 @@ function MainSideBar() {
     (state) => state.ingredientCategory
   );
 
-  useEffect(() => {
-    dispatch(getAllIngredientCategory());
-  }, []);
+  const memoizedDispatch = useCallback(dispatch, [dispatch]);
 
-  // useEffect(() => {
-  //   console.log(categoryData);
-  // }, [categoryData]);
+  useEffect(() => {
+    memoizedDispatch(getAllIngredientCategory());
+  }, [memoizedDispatch]);
 
   return (
     <section
