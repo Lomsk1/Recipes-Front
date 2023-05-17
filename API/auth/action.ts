@@ -11,7 +11,34 @@ export const authLogin = createAsyncThunk(
       });
       return data;
     } catch (err: any) {
-      throw rejectWithValue(err);
+      throw rejectWithValue(err.response.data);
+    }
+  }
+);
+
+export const authRegister = createAsyncThunk(
+  "auth/register",
+  async (
+    params: {
+      email: string;
+      password: string;
+      firstName: string;
+      lastName: string;
+      passwordConfirm: string;
+    },
+    { rejectWithValue }
+  ) => {
+    try {
+      const { data } = await axiosUnAuthorized.post("api/v1/users/signup", {
+        email: params.email,
+        password: params.password,
+        passwordConfirm: params.passwordConfirm,
+        firstName: params.firstName,
+        lastName: params.lastName,
+      });
+      return data;
+    } catch (err: any) {
+      throw rejectWithValue(err.response.data);
     }
   }
 );

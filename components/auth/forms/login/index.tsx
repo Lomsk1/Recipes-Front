@@ -1,10 +1,13 @@
 "use client";
 
 import { authLogin } from "@/API/auth/action";
-import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import LoadingAnimation from "@/components/loading/loading";
+import { setMessage } from "@/redux/client/popup/slice";
+import { useAppDispatch } from "@/store/hooks";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { useCookies } from "react-cookie";
 import { SubmitHandler, useForm } from "react-hook-form";
 import googleIcon from "../../../../assets/icons/google.png";
 
@@ -14,12 +17,14 @@ interface FormValues {
 }
 
 function LoginForm({ changeAuth }: { changeAuth: boolean }) {
-  const [errorStatus, setErrorStatus] = useState<number | null>(null);
+  const [cookies, setCookie] = useCookies(["jwt"]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
+  const [errorMsg, setErrorMsg] = useState<{
+    status: string;
+    message: string;
+  } | null>(null);
   const dispatch = useAppDispatch();
-  const authRedux: any = useAppSelector((state) => state.auth);
-
-  // console.log(authRedux);
 
   const {
     register,
@@ -27,7 +32,7 @@ function LoginForm({ changeAuth }: { changeAuth: boolean }) {
     formState: { errors },
   } = useForm<FormValues>();
 
-  const onSubmit: SubmitHandler<FormValues> = (data) => {
+  const onSubmit: SubmitHandler<FormValues> = async (data) => {
     dispatch(
       authLogin({
         email: data.email,
@@ -35,10 +40,19 @@ function LoginForm({ changeAuth }: { changeAuth: boolean }) {
       })
     )
       .unwrap()
-      .then((data: any) => console.log(data))
-      .catch((err: any) => setErrorStatus(err.response.status));
+      .then((data: any) => {
+        dispatch(setMessage("თქვენ წარმატებით გაიარეთ ავტორიზაცია"));
+        setCookie("jwt", data.token, {
+          expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
+        });
+        setIsLoading(false);
+      })
+      .catch((err: any) => {
+        setErrorMsg(err);
+        setIsLoading(false);
+      });
+      setIsLoading(true)
   };
-
   return (
     <article
       style={{
@@ -74,12 +88,18 @@ function LoginForm({ changeAuth }: { changeAuth: boolean }) {
           />
           <label htmlFor="log_password">პაროლი:</label>
         </div>
-        {errorStatus === 401 && <span>იმეილი ან პაროლი არასწორია!</span>}
-        <Link href={""}>დაგავიწყდა პაროლი?</Link>
+        {errorMsg?.status === "fail" && <span>{errorMsg.message}</span>}
+        <Link href={"auth/password-forgot"}>დაგავიწყდა პაროლი?</Link>
         <button type="submit" className="auth_button">
           ავტორიზაცია
         </button>
       </form>
+      {/* Loading */}
+      {isLoading && (
+        <div className="loader_container">
+          <LoadingAnimation />
+        </div>
+      )}
     </article>
   );
 }

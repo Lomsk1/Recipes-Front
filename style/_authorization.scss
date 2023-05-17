@@ -150,7 +150,7 @@
             span {
               color: $error_red;
               letter-spacing: 1px;
-              font-size: 0.8rem;
+              font-size: 0.7rem;
               font-weight: 700;
             }
             a {
@@ -165,6 +165,110 @@
             }
           }
         }
+      }
+    }
+  }
+}
+
+.password_forgot_section {
+  min-height: 100vh;
+  @include flexCenter(row);
+  main {
+    width: 80%;
+    max-width: 500px;
+    background-color: $dark_blue_bg;
+    border-radius: 6px;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 10px 30px;
+    header {
+      margin: 0 auto;
+      img {
+        animation: imageRotate infinite 6s linear;
+      }
+      @keyframes imageRotate {
+        0% {
+          transform: rotate(0deg);
+        }
+        25% {
+          transform: rotate(10deg);
+        }
+        75% {
+          transform: rotate(-10deg);
+        }
+        100% {
+          transform: rotate(0deg);
+        }
+      }
+    }
+    h1 {
+      font-size: 1.5rem;
+      letter-spacing: 1.2px;
+      color: $light_white;
+    }
+    p {
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+      color: $white_color;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      span {
+        margin-top: 15px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+        color: $dark_Red;
+      }
+      button {
+        margin: 20px auto;
+        &:hover {
+          color: $grey;
+        }
+      }
+    }
+  }
+}
+
+.password_confirm_section {
+  min-height: 100vh;
+  @include flexCenter(row);
+  main {
+    display: flex;
+    flex-direction: column;
+    background-color: $dark_blue;
+    width: 90%;
+    max-width: 700px;
+    gap: 40px;
+    border-radius: 6px;
+    padding: 10px 20px;
+    header {
+      text-align: center;
+
+      h1 {
+        font-size: 1.5rem;
+        letter-spacing: 1px;
+        color: $light_white;
+      }
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      span {
+        // margin-top: 15px;
+        transform: translateY(-5px);
+        padding-left: 10px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+        color: $dark_Red;
+      }
+      button {
+        margin: 20px auto;
       }
     }
   }

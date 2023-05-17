@@ -640,3 +640,69 @@
     border: 1px solid transparent;
   }
 }
+.popup_middle {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba($color: #000000, $alpha: 0.5);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 10;
+  @include flexCenter(row);
+  .text_cont {
+    width: 300px;
+    height: max-content;
+    background-color: $dark_green;
+    @include flexCenter(column);
+    border-radius: 15px;
+    overflow: hidden;
+    padding: 1em;
+    div {
+      width: 100%;
+      min-height: 4rem;
+      background-color: transparent;
+      text-align: center;
+      color: $white_color;
+    }
+    button {
+      width: 150px;
+      height: 30px;
+      margin-top: 20px;
+      margin-bottom: 10px;
+      border-radius: 10px;
+      background-color: transparent;
+      color: $dark_Red;
+      transition: 500ms;
+      border: 1px solid $dark_orange;
+      cursor: pointer;
+      &:hover {
+        color: $dark_orange;
+        border: 1px solid $dark_Red;
+      }
+    }
+  }
+}
+.loader_container {
+  background-color: rgba(0, 0, 0, 0.801);
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  z-index: 11;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+.loader_container_100{
+  background-color: rgb(0, 0, 0);
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  z-index: 11;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
