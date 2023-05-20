@@ -4,26 +4,11 @@ import { RecipeTypes } from "../types/types";
 interface RecipeProps
   extends Omit<
     RecipeTypes,
-    "recipeCategory" | "author" | "createdAt" | "image" | "_id" | "name" | ""
+    "recipeCategory" | "author" | "createdAt" | "image"  | "name" | ""
   > {
-  commentData: {
-    _id: string;
-    comment: string;
-    user: {
-      _id: string;
-      firstName: string;
-      avatar: {
-        name: string;
-        destination: string;
-        data: Buffer;
-      };
-    };
-    createdAt: Date;
-    like: {
-      users: string[];
-      amount: number;
-    };
-  }[];
+  userData:{
+    _id: string
+  } | null
 }
 
 function EachRecipeDescription({
@@ -35,7 +20,8 @@ function EachRecipeDescription({
   nutrition,
   cookingTime,
   portion,
-  commentData,
+  _id,
+  userData
 }: RecipeProps) {
   return (
     <>
@@ -84,7 +70,7 @@ function EachRecipeDescription({
 
           {/* Section */}
           <div className="comment">
-            <RecipeCommentSection commentData={commentData} />
+            <RecipeCommentSection recipeId={_id} userData={userData}/>
           </div>
         </div>
 

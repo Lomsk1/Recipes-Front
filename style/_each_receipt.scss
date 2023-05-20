@@ -213,6 +213,11 @@
     }
     .comment {
       margin-top: 50px;
+      .first_comment_popup{
+        color: $dark_Red;
+        font-size: 1.1rem;
+        letter-spacing: 1px;
+      }
     }
   }
 }

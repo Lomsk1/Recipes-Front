@@ -7,6 +7,8 @@ import recipeStore from "@/redux/client/receipts/store";
 import recipeAPIStore from "@/API/receipt/store";
 import authStore from "@/API/auth/store";
 import popupStore from "@/redux/client/popup/store";
+import commentApiStore from "@/API/comment/store";
+import commentLikeApiStore from "@/API/commentLike/store";
 
 const rootReducer = combineReducers({
   ...sidebarStore,
@@ -15,7 +17,9 @@ const rootReducer = combineReducers({
   ...recipeAPIStore,
   ...ingredientStore,
   ...authStore,
-  ...popupStore
+  ...popupStore,
+  ...commentApiStore,
+  ...commentLikeApiStore,
 });
 
 export const store = configureStore({

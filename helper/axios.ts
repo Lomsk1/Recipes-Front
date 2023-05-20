@@ -1,20 +1,17 @@
 import axios, { AxiosResponse } from "axios";
-import jwt_decode from "jwt-decode";
-import dayjs from "dayjs";
+import Cookies from "js-cookie";
 
 const baseURL = process.env.NEXT_PUBLIC_DB_HOST;
 
-// const authTokens = localStorage.getItem("authTokens")
-//   ? JSON.parse(localStorage.getItem("authTokens"))
-//   : null;
+const authTokens = Cookies.get("jwt") ? Cookies.get("jwt") : null;
 
-// const axiosInstance = axios.create({
-//   baseURL,
-//   headers: {
-//     Authorization: `Bearer ${authTokens?.access}`,
-//     "Content-Type": 'multipart/form-data'
-//   },
-// });
+export const axiosInstance = axios.create({
+  baseURL,
+  headers: {
+    Authorization: `Bearer ${authTokens}`,
+    "Content-Type": "multipart/form-data",
+  },
+});
 
 export const axiosUnauthorizedWithImg = axios.create({
   baseURL,
@@ -33,26 +30,13 @@ export const axiosUnAuthorized = axios.create({
   },
 });
 
-// axiosInstance.interceptors.request.use(async (req) => {
-//     if (!authTokens) {
-//       localStorage.getItem("authTokens")
-//         ? JSON.parse(localStorage.getItem("authTokens"))
-//         : null;
-//       req.headers.Authorization = `Bearer ${authTokens?.access}`;
-//     }
+axiosInstance.interceptors.request.use(async (req) => {
+  if (!authTokens) {
+    const authTokens = Cookies.get("jwt") ? Cookies.get("jwt") : null;
+    req.headers.Authorization = `Bearer ${authTokens}`;
+  }
 
-//     const user = jwt_decode(authTokens?.access);
-//     const isExpired = dayjs.unix(user.exp).diff(dayjs()) < 1;
-//     if (!isExpired) return req;
-
-//     const response = await axios.post(`${baseURL}/auth/jwt/refresh/`, {
-//       refresh: authTokens.refresh,
-//     });
-
-//     localStorage.setItem("authTokens", JSON.stringify(response.data));
-//     req.headers.Authorization = `Bearer ${response.data.access}`;
-
-//     return req;
-//   });
+  return req;
+});
 
 //   export default axiosInstance;

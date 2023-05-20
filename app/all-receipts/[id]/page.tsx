@@ -1,5 +1,6 @@
 import EachReceiptDescription from "@/components/eachReceiptPage/description";
 import EachReceiptHeader from "@/components/eachReceiptPage/header";
+import { cookies } from "next/headers";
 
 async function getData({ id }: any) {
   const res = await fetch(
@@ -15,18 +16,35 @@ async function getData({ id }: any) {
   return res.json();
 }
 
-async function getCommentData({ id }: any) {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_DB_HOST}/api/v1/comment/byRecipe/${id}`,
-    { next: { revalidate: 10 } }
+// async function getCommentData({ id }: any) {
+//   const res = await fetch(
+//     `${process.env.NEXT_PUBLIC_DB_HOST}/api/v1/comment/byRecipe/${id}`,
+//     { next: { revalidate: 10 } }
+//   );
+
+//   // Recommendation: handle errors
+//   if (!res.ok) {
+//     throw new Error("Failed to fetch data");
+//   }
+
+//   return res.json();
+// }
+
+async function getUserData() {
+  const cookieStore = cookies();
+  const token = cookieStore.get("jwt");
+
+  const result = await fetch(
+    `${process.env.NEXT_PUBLIC_DB_HOST}/api/v1/users/me`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token?.value}`,
+      },
+    }
   );
-
-  // Recommendation: handle errors
-  if (!res.ok) {
-    throw new Error("Failed to fetch data");
-  }
-
-  return res.json();
+  return result.json();
 }
 
 export default async function EachReceipt({
@@ -40,13 +58,10 @@ export default async function EachReceipt({
     id: params.id,
   });
 
-  const commentData = await getCommentData({
-    id: params.id,
-  });
-
+  const userData = await getUserData();
   return (
     <>
-      {data.status === "success" && commentData.status === "success" && (
+      {data.status === "success"  && (
         <>
           <EachReceiptHeader
             author={data.data.author}
@@ -63,7 +78,8 @@ export default async function EachReceipt({
             nutrition={data.data.nutrition}
             cookingTime={data.data.cookingTime}
             portion={data.data.portion}
-            commentData={commentData.data}
+            _id={data.data._id}
+            userData={userData.status === "success" ? userData.data : null}
           />
         </>
       )}

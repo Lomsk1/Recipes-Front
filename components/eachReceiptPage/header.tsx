@@ -36,7 +36,7 @@ function EachRecipeHeader({ name, author, createdAt, image }: ApiTypes) {
           <Image src={heartIcon} alt="favorite" width={20} height={20} />
         </div>
         <ReviewComponent />
-        <Link href="#">კომენტარების წაკითხვა</Link>
+        <a href="#comment_sec">კომენტარების წაკითხვა</a>
       </aside>
       {/* Image */}
       <aside>

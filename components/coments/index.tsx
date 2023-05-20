@@ -2,117 +2,186 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import avatarOne from "../../assets/images/avatar.webp";
-import avatarTwo from "../../assets/images/avatar_1.webp";
 import likeFullIcon from "../../assets/svg/likeFull_.svg";
 import likeIcon from "../../assets/svg/like.svg";
-import { Suspense, useCallback, useEffect, useState } from "react";
+import { useEffect } from "react";
+import avatarIcon from "../../assets/icons/avatar.png";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { getCommentByRecipe } from "@/API/comment/action";
+import {
+  createCommentLikeApi,
+  deleteCommentLikeApi,
+} from "@/API/commentLike/action";
+import CommentSendForm from "./form";
+import CommentSkeletonLoading from "../skeletons/comment";
 
 interface PropsTypes {
   commentData: {
-    _id: string;
-    comment: string;
-    user: {
+    data: {
       _id: string;
-      firstName: string;
-      avatar: {
-        name: string;
-        destination: string;
-        data: Buffer;
+      comment: string;
+      user: {
+        _id: string;
+        firstName: string;
+        avatar: {
+          public_id: string;
+          url: string;
+        };
       };
-    };
-    createdAt: Date;
-    like: {
-      users: string[];
-      amount: number;
-    };
-  }[];
+      createdAt: Date;
+      likes: {
+        user: string;
+        _id: number;
+      }[];
+    }[];
+    status: string;
+  };
+  userData: {
+    _id: string;
+  } | null;
+  recipeId: string;
 }
 
-function RecipeCommentSection({ commentData }: PropsTypes) {
-  const [sortValue, setSortValue] = useState<string>("new");
-  const [sortedData, setSortedData] =
-    useState<PropsTypes["commentData"]>(commentData);
+function RecipeCommentSection({
+  userData,
+  recipeId,
+}: {
+  userData: PropsTypes["userData"];
+  recipeId: PropsTypes["recipeId"];
+}) {
+  // Redux
+  const dispatch = useAppDispatch();
+  const {
+    isLoading,
+    commentData,
+  }: { isLoading: boolean; commentData: PropsTypes["commentData"] } =
+    useAppSelector((state) => state.commentApi);
 
+  // UseEffect for Comment Data
   useEffect(() => {
-    let sorted = sortedData.map((comment) => ({
-      ...comment,
-      createdAt: new Date(comment.createdAt),
-    }));
-    if (sortValue === "new") {
-      sorted.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
-    } else if (sortValue === "old") {
-      sorted.sort((a, b) => a.createdAt.getTime() - b.createdAt.getTime());
-    } else if (sortValue === "like") {
-      sorted.sort((a, b) => b.like.amount - a.like.amount);
-    }
-    setSortedData(sorted);
+    dispatch(
+      getCommentByRecipe({
+        recipeID: recipeId,
+      })
+    );
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [sortValue]);
+  }, [recipeId]);
 
+  // Date Option
   const options: any = { month: "long", day: "numeric", year: "numeric" };
 
   return (
-    <section className="comment_section">
-      <h2>კომენტარები</h2>
-      {/* Form */}
-      <form className="main_form">
-        <textarea placeholder="დაგვიტოვეთ შეტყობინება" />
-        <button>დამატება</button>
-      </form>
+    <>
+      {recipeId && (
+        <section className="comment_section" id="comment_sec">
+          <h2>კომენტარები</h2>
+          {/* Form */}
+          {<CommentSendForm userId={userData?._id} recipeId={recipeId} />}
+          <hr />
+          {/* Comment Section */}
+          <aside>
+            {/* Each comment */}
+            {recipeId && commentData.status === "success" ? (
+              commentData.data.length > 0 ? (
+                commentData.data.map((data) => (
+                  <div className="_box" key={data._id}>
+                    <div className="user">
+                      {data.user && (
+                        <Image
+                          src={
+                            data.user.avatar
+                              ? `${data.user.avatar.url}`
+                              : `${avatarIcon}`
+                          }
+                          alt="avatar"
+                          width={50}
+                          height={50}
+                        />
+                      )}
 
-      <hr />
-      {/* Sorting */}
-      <div className="sorting">
-        <select
-          name=""
-          id=""
-          onChange={(e) => {
-            setSortValue(e.target.value);
-          }}
-        >
-          <option value="new">ახლანდელი</option>
-          <option value="old">ძველი</option>
-          <option value="like">მოწონებებით</option>
-        </select>
-      </div>
-      {/* Comment Section */}
-      <aside>
-        {/* Each comment */}
-        {sortedData && sortedData.length > 0 ? (
-          sortedData.map((data) => (
-            <div className="_box" key={data._id}>
-              <div className="user">
-                {/* <Image
-                  src={`${process.env.NEXT_PUBLIC_DB_HOST}/${data.user.avatar.destination}/${data.user.avatar.name}`}
-                  alt="avatar"
-                  width={50}
-                  height={50}
-                /> */}
-                <Link href={`.../${data.user._id}`}>{data.user.firstName}</Link>
-              </div>
-              <div className="date">
-                <p>
-                  {new Date(data.createdAt).toLocaleDateString(
-                    "en-US",
-                    options
-                  )}
-                </p>
-              </div>
-              <div className="text">
-                <p>{data.comment}</p>
-              </div>
-              <div className="actions">
-                <Image src={likeIcon} alt="like" width={15} height={15} />
-                <p>{data.like.amount}</p>
-              </div>
-            </div>
-          ))
-        ) : (
-          <div>...Loading</div>
-        )}
-      </aside>
-    </section>
+                      {data.user && (
+                        <Link href={`.../${data.user._id}`}>
+                          {data.user.firstName}
+                        </Link>
+                      )}
+                    </div>
+                    <div className="date">
+                      <p>
+                        {new Date(data.createdAt).toLocaleDateString(
+                          "en-US",
+                          options
+                        )}
+                      </p>
+                    </div>
+                    <div className="text">
+                      <p>{data.comment}</p>
+                    </div>
+                    <div className="actions">
+                      {userData &&
+                      data.likes &&
+                      data.likes
+                        .map((data) => data.user)
+                        .includes(userData._id) ? (
+                        <Image
+                          src={likeFullIcon}
+                          alt="like"
+                          width={15}
+                          height={15}
+                          onClick={() => {
+                            dispatch(
+                              deleteCommentLikeApi({
+                                userId: userData._id,
+                                commentID: data._id,
+                              })
+                            )
+                              .unwrap()
+                              .then(() =>
+                                dispatch(
+                                  getCommentByRecipe({ recipeID: recipeId })
+                                )
+                              );
+                          }}
+                        />
+                      ) : (
+                        <Image
+                          src={likeIcon}
+                          alt="like"
+                          width={15}
+                          height={15}
+                          onClick={() => {
+                            if (userData) {
+                              dispatch(
+                                createCommentLikeApi({
+                                  user: userData._id,
+                                  comment: data._id,
+                                })
+                              )
+                                .unwrap()
+                                .then(() =>
+                                  dispatch(
+                                    getCommentByRecipe({ recipeID: recipeId })
+                                  )
+                                );
+                            }
+                          }}
+                        />
+                      )}
+                      <p>{data.likes.length}</p>
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <div className="first_comment_popup">
+                  იყავი პირველი კომენტარს ვინც გააკეთებს!
+                </div>
+              )
+            ) : (
+              <div>{<CommentSkeletonLoading />}</div>
+            )}
+          </aside>
+        </section>
+      )}
+    </>
   );
 }
 
