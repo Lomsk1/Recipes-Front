@@ -1,24 +1,46 @@
 import Image from "next/image";
-import Link from "next/link";
-import heartIcon from "../../assets/svg/heartEmpty.svg";
-import heartFullIcon from "../../assets/svg/heartFull.svg";
-import testImage from "../../assets/images/test.jpg";
+import AddToFavorites from "../favorites/addToFav";
 import ReviewComponent from "../review";
+import MakeReview from "../review/make";
 
 interface ApiTypes {
   name: string;
+  _id: string;
   author: {
     _id: string;
     firstName: string;
   };
   createdAt: Date;
   image: {
-    name: string;
-    destination: string;
+    public_id: string;
+    url: string;
   };
+  ratingsAverage: number;
+  ratingsQuantity: number;
+  review: {
+    user: string;
+  }[];
+  userData: {
+    _id: string;
+    favorites: {
+      _id: string;
+      recipe: string;
+    }[];
+    recipe: string;
+  } | null;
 }
 
-function EachRecipeHeader({ name, author, createdAt, image }: ApiTypes) {
+function EachRecipeHeader({
+  name,
+  author,
+  createdAt,
+  image,
+  userData,
+  _id,
+  ratingsAverage,
+  ratingsQuantity,
+  review,
+}: ApiTypes) {
   const date = new Date(createdAt);
   const options: any = { month: "long", day: "numeric", year: "numeric" };
   const changedDate = date.toLocaleDateString("ka-GE", options);
@@ -27,22 +49,36 @@ function EachRecipeHeader({ name, author, createdAt, image }: ApiTypes) {
     <section className="each_receipt_title">
       {/* information */}
       <aside>
-        <h1>{name}</h1>
-        <h3>ავტორი: {author.firstName}</h3>
+        <h1>{name && name}</h1>
+        <h3>ავტორი: {author ? author.firstName : "უცნობი"}</h3>
         <h4>{changedDate && changedDate}</h4>
 
-        <div className="favorite">
-          <p>ფავორიტებში დამატება</p>
-          <Image src={heartIcon} alt="favorite" width={20} height={20} />
-        </div>
-        <ReviewComponent />
+        {/* Add to Favorites */}
+        {userData && _id && (
+          <AddToFavorites recipeId={_id} userData={userData} />
+        )}
+
+        {/* Reviews */}
+        <ReviewComponent
+          ratingsAverage={ratingsAverage}
+          ratingsQuantity={ratingsQuantity}
+        />
+        {userData &&
+        _id &&
+        review &&
+        !review.map((data) => data.user).includes(userData?._id) ? (
+          <MakeReview userID={userData._id} recipeID={_id} />
+        ) : (
+          ""
+        )}
+        {/* Comment Read */}
         <a href="#comment_sec">კომენტარების წაკითხვა</a>
       </aside>
       {/* Image */}
       <aside>
         <Image
-          src={`${process.env.NEXT_PUBLIC_DB_HOST}/${image.destination}/${image.name}`}
-          alt={name}
+          src={`${image.url}`}
+          alt={name ? name : "სურათი"}
           className="re"
           width={1000}
           height={1000}

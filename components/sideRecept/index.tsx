@@ -49,8 +49,8 @@ function ReceptSide({
       {/* Image */}
       <div className="image">
         <Image
-          src={`${process.env.NEXT_PUBLIC_DB_HOST}/${image.destination}/${image.name}`}
-          alt={name}
+          src={`${image.url}`}
+          alt={name ? name : "სურათი"}
           width={100}
           height={100}
         />
@@ -61,7 +61,7 @@ function ReceptSide({
         <header>
           <aside>
             {/* Title */}
-            <h3>{name}</h3>
+            <h3>{name && name}</h3>
             <button>
               <Image src={heartEmptyIcon} alt="heart" width={15} height={15} />
             </button>
@@ -72,7 +72,7 @@ function ReceptSide({
             <ReviewComponent />
             <div className="time">
               <Image src={clockIcon} alt="heart" width={15} height={15} />
-              <p>{cookingTime}</p>
+              <p>{cookingTime && cookingTime}</p>
             </div>
           </div>
         </header>
@@ -83,7 +83,7 @@ function ReceptSide({
           {ingredients &&
             ingredients.map((data: { _id: string; name: string }) => (
               <div className="_ingredient" key={data._id}>
-                <p>{data.name}</p>
+                <p>{data && data.name}</p>
                 <Image src={checkIcon} alt="check" width={17} height={17} />
               </div>
             ))}
@@ -102,8 +102,8 @@ function ReceptSide({
           nutrition.map(
             (data: { _id: string; name: string; weight: number }) => (
               <div className="_ingredient" key={data._id}>
-                <p>{data.name}</p>
-                <span>{data.weight} კალორია</span>
+                <p>{data && data.name}</p>
+                <span>{data && data.weight} კალორია</span>
               </div>
             )
           )}

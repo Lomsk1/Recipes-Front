@@ -7,15 +7,15 @@ import heartFullIcon from "../../assets/svg/heartFull.svg";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { setSideRecipeToggle } from "@/redux/client/receipts/slice";
 import { getRecipeById } from "@/API/receipt/action";
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
 
 interface ReduxTypes {
   sideRecipeIsOpen: boolean;
 }
 interface PropsTypes {
   image: {
-    name: string;
-    destination: string;
+    public_id: string;
+    url: string;
   };
   title: string;
   cookingTime: string;
@@ -41,8 +41,8 @@ function RecipeBox({
       {/* Image */}
       <div className="image">
         <Image
-          src={`${process.env.NEXT_PUBLIC_DB_HOST}/${image.destination}/${image.name}`}
-          alt={title}
+          src={`${image && image.url}`}
+          alt={title ? title : "სურათი"}
           width={100}
           height={100}
         />
@@ -58,10 +58,11 @@ function RecipeBox({
           {title}
         </h4>
         <p>
-          მომზადების დრო: <span>{cookingTime}</span>
+          მომზადების დრო: <span>{cookingTime && cookingTime}</span>
         </p>
         <p>
-          საჭირო ინგრედიენტების რაოდენობა: <span>{ingredientsLength}</span>
+          საჭირო ინგრედიენტების რაოდენობა:{" "}
+          <span>{ingredientsLength && ingredientsLength}</span>
         </p>
       </div>
       {/* Actions */}

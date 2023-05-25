@@ -9,6 +9,7 @@ import authStore from "@/API/auth/store";
 import popupStore from "@/redux/client/popup/store";
 import commentApiStore from "@/API/comment/store";
 import commentLikeApiStore from "@/API/commentLike/store";
+import recipeFavoriteApiStore from "@/API/recipeFavorite/store";
 
 const rootReducer = combineReducers({
   ...sidebarStore,
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
   ...popupStore,
   ...commentApiStore,
   ...commentLikeApiStore,
+  ...recipeFavoriteApiStore,
 });
 
 export const store = configureStore({

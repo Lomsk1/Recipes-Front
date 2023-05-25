@@ -16,9 +16,8 @@ export interface RecipeTypes {
   }[];
   cookingTime: string;
   image: {
-    name: string;
-    destination: string;
-    data: Buffer;
+    public_id: string;
+    url: string;
   };
   createdAt: Date;
   difficulty: string;

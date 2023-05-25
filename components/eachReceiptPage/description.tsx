@@ -4,11 +4,11 @@ import { RecipeTypes } from "../types/types";
 interface RecipeProps
   extends Omit<
     RecipeTypes,
-    "recipeCategory" | "author" | "createdAt" | "image"  | "name" | ""
+    "recipeCategory" | "author" | "createdAt" | "image" | "name" | ""
   > {
-  userData:{
-    _id: string
-  } | null
+  userData: {
+    _id: string;
+  } | null;
 }
 
 function EachRecipeDescription({
@@ -21,7 +21,7 @@ function EachRecipeDescription({
   cookingTime,
   portion,
   _id,
-  userData
+  userData,
 }: RecipeProps) {
   return (
     <>
@@ -42,13 +42,13 @@ function EachRecipeDescription({
                 necessaryIngredients.length > 0 &&
                 necessaryIngredients.map(
                   (data: { _id: string; name: string }) => (
-                    <li key={data._id}>{data.name}</li>
+                    <li key={data._id}>{data && data.name}</li>
                   )
                 )}
               {necessaryIngredients &&
                 necessaryIngredients.length === 0 &&
                 ingredients.map((data: { _id: string; name: string }) => (
-                  <li key={data._id}>{data.name}</li>
+                  <li key={data._id}>{data && data.name}</li>
                 ))}
             </ul>
           </div>
@@ -61,7 +61,7 @@ function EachRecipeDescription({
               cookingProcess.map(
                 (data: { _id: string; description: string; step: number }) => (
                   <div className="step" key={data._id}>
-                    <h4>ნაბიჯი {data.step}</h4>
+                    <h4>ნაბიჯი {data && data.step}</h4>
                     <p>{data.description}</p>
                   </div>
                 )
@@ -70,7 +70,7 @@ function EachRecipeDescription({
 
           {/* Section */}
           <div className="comment">
-            <RecipeCommentSection recipeId={_id} userData={userData}/>
+            <RecipeCommentSection recipeId={_id} userData={userData} />
           </div>
         </div>
 
@@ -102,8 +102,8 @@ function EachRecipeDescription({
                   nutrition.map(
                     (data: { _id: string; name: string; weight: number }) => (
                       <li key={data._id}>
-                        <p>{data.name}</p>
-                        <span>{data.weight} გ</span>
+                        <p>{data && data.name}</p>
+                        <span>{data && data.weight} გ</span>
                       </li>
                     )
                   )

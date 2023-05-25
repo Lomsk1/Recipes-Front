@@ -106,15 +106,21 @@ function RecipeCommentSection({
                       )}
                     </div>
                     <div className="date">
-                      <p>
-                        {new Date(data.createdAt).toLocaleDateString(
-                          "en-US",
-                          options
-                        )}
-                      </p>
+                      {data.createdAt && (
+                        <p>
+                          {new Date(data.createdAt).toLocaleDateString(
+                            "en-US",
+                            options
+                          )}
+                        </p>
+                      )}
                     </div>
                     <div className="text">
-                      <p>{data.comment}</p>
+                      <p>
+                        {data.comment
+                          ? data.comment
+                          : "კომენტარი ვერ ჩაიტვირთა"}
+                      </p>
                     </div>
                     <div className="actions">
                       {userData &&
@@ -166,7 +172,7 @@ function RecipeCommentSection({
                           }}
                         />
                       )}
-                      <p>{data.likes.length}</p>
+                      <p>{data.likes ? data.likes.length : 0}</p>
                     </div>
                   </div>
                 ))

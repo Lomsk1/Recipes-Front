@@ -61,13 +61,18 @@ export default async function EachReceipt({
   const userData = await getUserData();
   return (
     <>
-      {data.status === "success"  && (
+      {data.status === "success" && (
         <>
           <EachReceiptHeader
             author={data.data.author}
             name={data.data.name}
             createdAt={data.data.createdAt}
             image={data.data.image}
+            _id={data.data._id}
+            ratingsAverage={data.data.ratingsAverage}
+            ratingsQuantity={data.data.ratingsQuantity}
+            review={data.data.review}
+            userData={userData.status === "success" ? userData.data : null}
           />
           <EachReceiptDescription
             cookingProcess={data.data.cookingProcess}
