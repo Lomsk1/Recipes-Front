@@ -37,6 +37,8 @@ export interface RecipeTypes {
     _id: string;
   }[];
   portion: number;
+  ratingsAverage: number | null;
+  ratingsQuantity: number | null;
 }
 
 export interface IngredientsType {

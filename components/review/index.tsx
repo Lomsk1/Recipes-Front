@@ -7,12 +7,12 @@ function ReviewComponent({
   ratingsAverage,
   ratingsQuantity,
 }: {
-  ratingsAverage: number;
-  ratingsQuantity: number;
+  ratingsAverage: number | null;
+  ratingsQuantity: number | null;
 }) {
   return (
     <div className="review_component">
-      {ratingsAverage >= 1 && ratingsAverage < 2 && (
+      {ratingsAverage && ratingsAverage >= 1 && ratingsAverage < 2 && (
         <>
           <Image src={starFullIcon} alt="star" width={15} height={15} />
           <Image src={starIcon} alt="star" width={15} height={15} />
@@ -21,7 +21,7 @@ function ReviewComponent({
           <Image src={starIcon} alt="star" width={15} height={15} />
         </>
       )}
-      {ratingsAverage >= 2 && ratingsAverage < 3 && (
+      {ratingsAverage && ratingsAverage >= 2 && ratingsAverage < 3 && (
         <>
           <Image src={starFullIcon} alt="star" width={15} height={15} />
           <Image src={starFullIcon} alt="star" width={15} height={15} />
@@ -30,7 +30,7 @@ function ReviewComponent({
           <Image src={starIcon} alt="star" width={15} height={15} />
         </>
       )}
-      {ratingsAverage >= 3 && ratingsAverage < 4 && (
+      {ratingsAverage && ratingsAverage >= 3 && ratingsAverage < 4 && (
         <>
           <Image src={starFullIcon} alt="star" width={15} height={15} />
           <Image src={starFullIcon} alt="star" width={15} height={15} />
@@ -39,7 +39,7 @@ function ReviewComponent({
           <Image src={starIcon} alt="star" width={15} height={15} />
         </>
       )}
-      {ratingsAverage >= 4 && ratingsAverage < 4.8 && (
+      {ratingsAverage && ratingsAverage >= 4 && ratingsAverage < 4.8 && (
         <>
           <Image src={starFullIcon} alt="star" width={15} height={15} />
           <Image src={starFullIcon} alt="star" width={15} height={15} />
@@ -48,7 +48,7 @@ function ReviewComponent({
           <Image src={starIcon} alt="star" width={15} height={15} />
         </>
       )}
-      {ratingsAverage >= 4.8 && ratingsAverage <= 5 && (
+      {ratingsAverage && ratingsAverage >= 4.8 && ratingsAverage <= 5 && (
         <>
           <Image src={starFullIcon} alt="star" width={15} height={15} />
           <Image src={starFullIcon} alt="star" width={15} height={15} />
@@ -59,9 +59,11 @@ function ReviewComponent({
       )}
 
       <div className="rating_amount">
-        <p>
-          {ratingsQuantity}/{ratingsAverage}
-        </p>
+        {ratingsQuantity && ratingsAverage && (
+          <p>
+            {ratingsQuantity}/{ratingsAverage}
+          </p>
+        )}
       </div>
     </div>
   );

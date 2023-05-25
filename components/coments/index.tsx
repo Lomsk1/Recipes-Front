@@ -52,7 +52,6 @@ function RecipeCommentSection({
   // Redux
   const dispatch = useAppDispatch();
   const {
-    isLoading,
     commentData,
   }: { isLoading: boolean; commentData: PropsTypes["commentData"] } =
     useAppSelector((state) => state.commentApi);

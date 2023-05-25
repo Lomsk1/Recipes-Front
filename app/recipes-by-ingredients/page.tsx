@@ -4,17 +4,28 @@ import ChosenInformation from "@/components/byIngredients/chosenInformation";
 import MainPageHeader from "@/components/navigation/header";
 import ReceiptsBox from "@/components/byIngredients/receipts";
 import SidebarBurger from "@/components/sidebar/burger";
-import MainSideBar from "@/components/sidebar/main";
 import ReceptSide from "@/components/sideRecept";
 import { setSideRecipeToggle } from "@/redux/client/receipts/slice";
-import { setSidebarToggle } from "@/redux/client/sidebar/slice";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useOnClickOutside } from "usehooks-ts";
 import emptyStateImage from "../../assets/images/emptyYellow.png";
 import Image from "next/image";
+import { axiosInstance } from "@/helper/axios";
+
+async function getUserData() {
+  const result = await axiosInstance(`api/v1/users/me`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  return result;
+}
 
 export default function ChooseIngredients() {
+  const [userFetch, setUserFetch] = useState<any>(null);
+
   const redux: any = useAppSelector((state) => state.recipe);
   const recipeApi: any = useAppSelector((state) => state.recipeAPI);
 
@@ -26,6 +37,21 @@ export default function ChooseIngredients() {
   };
 
   useOnClickOutside(ref, handleClickOutside);
+
+  // User & Favorite
+
+  useEffect(() => {
+    const userData = async () => {
+      const data = await getUserData();
+      setUserFetch(data.data);
+    };
+    if (userData) userData();
+  }, []);
+
+  const handlerUserFunction = async () => {
+    const data = await getUserData();
+    setUserFetch(data.data);
+  };
   return (
     <main className="main_page">
       {/* Header && NAvigation */}
@@ -46,6 +72,8 @@ export default function ChooseIngredients() {
               image={data.image}
               ingredientsLength={data.ingredients.length}
               id={data._id}
+              userData={userFetch}
+              userFunction={() => handlerUserFunction()}
             />
           ))
         ) : (
@@ -61,10 +89,7 @@ export default function ChooseIngredients() {
       <section
         className="receipt_side_detailed"
         style={{
-          right:
-            // recipeApi.receptDataById &&
-            // recipeApi.receptDataById.length > 0 &&
-            redux.sideRecipeIsOpen ? "0" : "-100%",
+          right: redux.sideRecipeIsOpen ? "0" : "-100%",
         }}
         ref={ref}
       >
@@ -76,6 +101,10 @@ export default function ChooseIngredients() {
             ingredients={recipeApi.receptDataById.data.ingredients}
             image={recipeApi.receptDataById.data.image}
             nutrition={recipeApi.receptDataById.data.nutrition}
+            ratingsAverage={recipeApi.receptDataById.data.ratingsAverage}
+            ratingsQuantity={recipeApi.receptDataById.data.ratingsQuantity}
+            userData={userFetch}
+            userFunction={() => handlerUserFunction()}
           />
         ) : (
           <div>loading...</div>

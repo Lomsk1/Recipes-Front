@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import testImage from "../../assets/images/test.jpg";
 import heartEmptyIcon from "../../assets/svg/heartEmpty.svg";
 import heartFullIcon from "../../assets/svg/heartFull.svg";
 import ReviewComponent from "../review";
@@ -12,6 +11,10 @@ import Link from "next/link";
 import { useAppDispatch } from "@/store/hooks";
 import { setSideRecipeToggle } from "@/redux/client/receipts/slice";
 import { RecipeTypes } from "../types/types";
+import {
+  createRecipeFavorite,
+  deleteRecipeFavoriteApi,
+} from "@/API/recipeFavorite/action";
 
 interface RecipeProps
   extends Omit<
@@ -25,7 +28,19 @@ interface RecipeProps
     | "like"
     | "necessaryIngredients"
     | "portion"
-  > {}
+  > {
+  userData: {
+    data: {
+      recipe: string;
+      _id: string;
+      favorites: {
+        _id: string;
+        recipe: string;
+      }[];
+    };
+  };
+  userFunction: Function;
+}
 
 function ReceptSide({
   image,
@@ -34,6 +49,10 @@ function ReceptSide({
   ingredients,
   _id,
   nutrition,
+  ratingsAverage,
+  ratingsQuantity,
+  userData,
+  userFunction,
 }: RecipeProps) {
   const dispatch = useAppDispatch();
 
@@ -62,14 +81,53 @@ function ReceptSide({
           <aside>
             {/* Title */}
             <h3>{name && name}</h3>
-            <button>
-              <Image src={heartEmptyIcon} alt="heart" width={15} height={15} />
-            </button>
+            {userData &&
+            userData.data.favorites
+              .map((data: { recipe: string }) => data.recipe)
+              .includes(_id) ? (
+              <button
+                onClick={() =>
+                  dispatch(
+                    deleteRecipeFavoriteApi({
+                      userId: userData.data._id,
+                      recipeId: _id,
+                    })
+                  )
+                    .unwrap()
+                    .then(() => userFunction())
+                }
+              >
+                <Image src={heartFullIcon} alt="heart" width={15} height={15} />
+              </button>
+            ) : (
+              <button
+                onClick={() =>
+                  dispatch(
+                    createRecipeFavorite({
+                      user: userData.data._id,
+                      recipeID: _id,
+                    })
+                  )
+                    .unwrap()
+                    .then(() => userFunction())
+                }
+              >
+                <Image
+                  src={heartEmptyIcon}
+                  alt="heart"
+                  width={15}
+                  height={15}
+                />
+              </button>
+            )}
           </aside>
           <hr />
           {/* Review & Time */}
           <div className="rew_time">
-            <ReviewComponent />
+            <ReviewComponent
+              ratingsAverage={ratingsAverage}
+              ratingsQuantity={ratingsQuantity}
+            />
             <div className="time">
               <Image src={clockIcon} alt="heart" width={15} height={15} />
               <p>{cookingTime && cookingTime}</p>

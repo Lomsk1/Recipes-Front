@@ -35,11 +35,12 @@ async function getUserData() {
 
 function AddToFavorites({ userData, recipeId }: PropsType) {
   const [domLoaded, setDomLoaded] = useState(false);
+  const [userFetch, setUserFetch] = useState<any>(null);
 
   useEffect(() => {
     setDomLoaded(true);
   }, []);
-  const [userFetch, setUserFetch] = useState<any>(null);
+
   useEffect(() => {
     const userData = async () => {
       const data = await getUserData();
@@ -47,6 +48,7 @@ function AddToFavorites({ userData, recipeId }: PropsType) {
     };
     if (userData) userData();
   }, []);
+
   // Redux
   const dispatch = useAppDispatch();
 

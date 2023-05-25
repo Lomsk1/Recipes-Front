@@ -4,7 +4,13 @@ import { RecipeTypes } from "../types/types";
 interface RecipeProps
   extends Omit<
     RecipeTypes,
-    "recipeCategory" | "author" | "createdAt" | "image" | "name" | ""
+    | "recipeCategory"
+    | "author"
+    | "createdAt"
+    | "image"
+    | "name"
+    | "ratingsAverage"
+    | "ratingsQuantity"
   > {
   userData: {
     _id: string;
