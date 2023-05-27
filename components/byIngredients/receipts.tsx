@@ -18,7 +18,7 @@ interface ReduxTypes {
   sideRecipeIsOpen: boolean;
 }
 interface PropsTypes {
-  image: {
+  images: {
     public_id: string;
     url: string;
   };
@@ -40,7 +40,7 @@ interface PropsTypes {
 }
 
 function RecipeBox({
-  image,
+  images,
   title,
   cookingTime,
   ingredientsLength,
@@ -56,7 +56,6 @@ function RecipeBox({
 
   const router = useRouter();
 
-  console.log(userData);
   // Function to handle screen size changes
   function handleScreenSizeChange() {
     setScreenSize(window.innerWidth);
@@ -68,12 +67,14 @@ function RecipeBox({
     <div className="receipt_box">
       {/* Image */}
       <div className="image">
-        <Image
-          src={`${image && image.url}`}
-          alt={title ? title : "სურათი"}
-          width={100}
-          height={100}
-        />
+        {images && (
+          <Image
+            src={`${images && images.url}`}
+            alt={title ? title : "სურათი"}
+            width={100}
+            height={100}
+          />
+        )}
       </div>
       {/* Information */}
       <div className="information">

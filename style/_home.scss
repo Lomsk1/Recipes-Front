@@ -1,18 +1,22 @@
 .home_introduce {
   min-height: 100vh;
   @include flexCenter(column);
-  text-align: center;
   overflow: hidden;
   position: relative;
-  @include backgroundFixed("https://wallpapercave.com/wp/wp9268246.jpg");
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 10px;
+  padding: 20px;
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+  }
   .starter_filter {
     position: absolute;
     height: 100%;
-    background-color: black;
+    background-color: $black_color;
     width: 100%;
     z-index: 2;
     mix-blend-mode: multiply;
-    // @include flexCenter(row);
     .inner {
       width: 140vw;
       height: 140vw;
@@ -27,13 +31,20 @@
   .introduction {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    background-color: #14213d6e;
+    min-height: 500px;
+    padding: 10px;
+    border-radius: 10px;
+    transition: 500ms;
+    &:hover {
+      background-color: #14213da9;
+      transition: 500ms;
+    }
+
     h1 {
-      @include font_noto;
       letter-spacing: 3px;
       font-size: 3em;
       font-weight: 900;
-      margin: 0;
       transform: translateX(-100px);
       opacity: 0;
       color: $white_color;
@@ -68,13 +79,204 @@
         font-size: 0.8em;
       }
     }
+    .slogan {
+      font-size: 0.8rem;
+      color: grey;
+      letter-spacing: 1px;
+      transform: translateX(-100px);
+      opacity: 0;
+    }
     a {
       transform: translateY(100px);
       opacity: 0;
-      width: 150px;
-      height: 30px;
-      background-color: red;
+      background-color: #70e0007a;
       text-decoration: none;
+      width: fit-content;
+      margin-top: 20px;
+      padding: 20px 70px;
+      color: $white_color;
+      letter-spacing: 1px;
+      border-radius: 7px;
+      transition: 500ms;
+
+      &:hover {
+        transition: 500ms;
+        background-color: #70e000e3;
+      }
+    }
+  }
+  .side_image {
+    background-color: #e6394713;
+    min-height: 500px;
+    padding: 20px;
+    transition: 500ms;
+    border-radius: 10px;
+
+    &:hover {
+      background-color: #e639475d;
+      transition: 500ms;
+    }
+
+    h2 {
+      letter-spacing: 3px;
+      font-size: 2em;
+      font-weight: 900;
+      text-align: center;
+      color: $white_color;
+    }
+    form {
+      display: flex;
+      position: relative;
+      height: 50px;
+      margin-top: 30px;
+      align-items: center;
+      input {
+        outline: none;
+        padding: 20px;
+        padding-right: 50px;
+        height: 100%;
+        width: 100%;
+        background-color: transparent;
+        border: 1px solid $light_Red;
+        transition: 500ms;
+        border-radius: 7px;
+        &:focus {
+          border: 1px solid $dark_orange;
+          transition: 500ms;
+        }
+      }
+
+      button {
+        width: 30px;
+        height: 30px;
+        background-color: transparent;
+        position: absolute;
+        right: 20px;
+        border: none;
+        cursor: pointer;
+        @include flexCenter(row);
+      }
+    }
+    .search_results {
+      height: 300px;
+      margin-top: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.411);
+      padding: 10px;
+      border-radius: 6px;
+    }
+  }
+}
+.recipe_stats_charts {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  @media (max-width: 600px) {
+    display: none;
+  }
+  header,
+  main {
+    min-height: 400px;
+    display: flex;
+    gap: 10px;
+    @media (max-width: 750px) {
+      flex-direction: column-reverse;
+    }
+    padding: 10px;
+
+    aside {
+      width: 100%;
+      border-radius: 10px;
+      overflow: hidden;
+      transition: 500ms;
+      text-align: center;
+      background-color: rgba(220, 20, 60, 0.527);
+      pad: 20px;
+      gap: 20px;
+
+      &:hover {
+        background-color: rgba(220, 20, 60, 0.8);
+        transition: 500ms;
+      }
+      p {
+        color: $white_color;
+
+        font-size: 1.2rem;
+        letter-spacing: 1px;
+        span {
+          font-size: 0.8rem;
+          color: $grey;
+          font-weight: 700;
+          color: $light_blue;
+          text-decoration: underline;
+        }
+      }
+      a {
+        padding: 5px 20px;
+        background-color: $dark_blue;
+        border-radius: 6px;
+        letter-spacing: 1px;
+        text-decoration: none;
+        color: $light_white;
+        font-weight: 700;
+        transition: 500ms;
+        border: 1px solid transparent;
+        &:hover {
+          transition: 500ms;
+          background-color: transparent;
+          border: 1px solid $dark_blue;
+        }
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-width: 300px;
+        gap: 20px;
+        select {
+          width: 100px;
+          margin: 0 auto;
+          background-color: transparent;
+          border: 1px solid $light_orange;
+          color: $white_color;
+          outline: none;
+          option {
+            background-color: $black_color;
+          }
+        }
+        button {
+          padding: 5px 50px;
+          width: fit-content;
+          margin: 0 auto;
+          border: 1px solid $dark_orange;
+          background-color: transparent;
+          border-radius: 5px;
+          cursor: pointer;
+          color: $white_color;
+          letter-spacing: 1px;
+          font-weight: 700;
+          transition: 500ms;
+          &:hover {
+            transition: 500ms;
+            background-color: $dark_blue;
+            border: 1px solid transparent;
+          }
+        }
+      }
+    }
+    .chart_ {
+      background-color: rgba(0, 0, 0, 0.295);
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.692);
+        transition: 500ms;
+      }
+    }
+    ._info {
+      @include flexCenter(column);
     }
   }
 }

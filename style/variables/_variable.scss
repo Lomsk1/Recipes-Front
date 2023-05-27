@@ -49,6 +49,7 @@ body,
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  @include font_noto;
 
   &::-webkit-scrollbar {
     width: 6px;

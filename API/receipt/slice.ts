@@ -1,11 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getAllFilteredRecipe, getAllRecipe, getRecipeById } from "./action";
+import {
+  getAllFilteredRecipe,
+  getAllRecipe,
+  getRecipeById,
+  getRecipesAnnuallyStats,
+} from "./action";
 
 interface RecipeTypes {
   recipeData: any;
   isLoading: boolean;
   errorMessage: any;
   receptDataById: any;
+  annuallyStats: any;
+  annuallyIsLoading: boolean;
 }
 
 export const recipeAPISlice = createSlice({
@@ -15,6 +22,8 @@ export const recipeAPISlice = createSlice({
     receptDataById: [],
     isLoading: true,
     errorMessage: null,
+    annuallyStats: [],
+    annuallyIsLoading: true,
   },
   reducers: {},
   extraReducers: (builder) => {
@@ -51,6 +60,17 @@ export const recipeAPISlice = createSlice({
     builder.addCase(getRecipeById.rejected, (state, action) => {
       state.isLoading = true;
       (state.receptDataById = null), (state.errorMessage = action.error);
+    });
+
+    // Annually Stats
+    builder.addCase(getRecipesAnnuallyStats.pending, (state) => {
+      state.annuallyIsLoading = true;
+    });
+    builder.addCase(getRecipesAnnuallyStats.fulfilled, (state, action) => {
+      (state.annuallyIsLoading = false), (state.annuallyStats = action.payload);
+    });
+    builder.addCase(getRecipesAnnuallyStats.rejected, (state, action) => {
+      state.annuallyIsLoading = true;
     });
   },
 });

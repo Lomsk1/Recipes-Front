@@ -69,7 +69,7 @@ export default function ChooseIngredients() {
               key={data._id}
               title={data.name}
               cookingTime={data.cookingTime}
-              image={data.image}
+              images={data.image}
               ingredientsLength={data.ingredients.length}
               id={data._id}
               userData={userFetch}

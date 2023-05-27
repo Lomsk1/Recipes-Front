@@ -1,3 +1,7 @@
 export default function AllRecipePage() {
-  return <h1>Hello, Next.js!</h1>;
+  return (
+    <>
+      <section className="all_recipe_page_section_one"></section>
+    </>
+  );
 }

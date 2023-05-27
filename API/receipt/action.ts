@@ -67,3 +67,17 @@ export const makeRecipeReview = createAsyncThunk(
     }
   }
 );
+
+export const getRecipesAnnuallyStats = createAsyncThunk(
+  "recipeAPI/getAnnuallyStats",
+  async (params: { year: string }, { rejectWithValue }) => {
+    try {
+      const { data } = await axiosUnAuthorized.get(
+        `api/v1/recipe/recipe-stats/${params.year}`
+      );
+      return data;
+    } catch (err: any) {
+      throw rejectWithValue(err.message);
+    }
+  }
+);
