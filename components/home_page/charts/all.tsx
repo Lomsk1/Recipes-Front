@@ -45,7 +45,11 @@ function AllRecipeChart({ stats }: StatsDataTypes) {
       {
         label: "რაოდენობა",
         data: [
-          stats.map((data) => data.numRecipes).reduce((acc, cur) => acc + cur),
+          stats.length > 0
+            ? stats
+                .map((data) => data.numRecipes)
+                .reduce((acc, cur) => acc + cur)
+            : 0,
         ],
         backgroundColor: ["rgba(255, 99, 132, 0.2)"],
         borderColor: ["rgba(255, 99, 132, 1)"],

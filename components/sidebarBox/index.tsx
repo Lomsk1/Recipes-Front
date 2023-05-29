@@ -1,7 +1,7 @@
 import { setIngredients } from "@/redux/client/ingredients/slice";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import Image from "next/image";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import allCousin from "../../assets/icons/All cuisines.png";
 
 interface SideTypes {

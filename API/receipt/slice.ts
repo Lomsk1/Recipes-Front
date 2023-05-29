@@ -3,6 +3,7 @@ import {
   getAllFilteredRecipe,
   getAllRecipe,
   getRecipeById,
+  getRecipeBySlug,
   getRecipesAnnuallyStats,
 } from "./action";
 
@@ -13,6 +14,8 @@ interface RecipeTypes {
   receptDataById: any;
   annuallyStats: any;
   annuallyIsLoading: boolean;
+  slugRecipe: any;
+  slugRecipeIsLoading: boolean;
 }
 
 export const recipeAPISlice = createSlice({
@@ -24,6 +27,8 @@ export const recipeAPISlice = createSlice({
     errorMessage: null,
     annuallyStats: [],
     annuallyIsLoading: true,
+    slugRecipe: [],
+    slugRecipeIsLoading: true,
   },
   reducers: {},
   extraReducers: (builder) => {
@@ -71,6 +76,17 @@ export const recipeAPISlice = createSlice({
     });
     builder.addCase(getRecipesAnnuallyStats.rejected, (state, action) => {
       state.annuallyIsLoading = true;
+    });
+
+    /* Slug Recipe */
+    builder.addCase(getRecipeBySlug.pending, (state) => {
+      state.slugRecipeIsLoading = true;
+    });
+    builder.addCase(getRecipeBySlug.fulfilled, (state, action) => {
+      (state.slugRecipeIsLoading = false), (state.slugRecipe = action.payload);
+    });
+    builder.addCase(getRecipeBySlug.rejected, (state, action) => {
+      state.slugRecipeIsLoading = true;
     });
   },
 });

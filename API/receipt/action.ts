@@ -81,3 +81,17 @@ export const getRecipesAnnuallyStats = createAsyncThunk(
     }
   }
 );
+
+export const getRecipeBySlug = createAsyncThunk(
+  "recipeAPI/getRecipeBySlug",
+  async (params: { slug: string }, { rejectWithValue }) => {
+    try {
+      const { data } = await axiosUnAuthorized.get(
+        `api/v1/recipe/slug/${params.slug}`
+      );
+      return data;
+    } catch (err: any) {
+      throw rejectWithValue(err.message);
+    }
+  }
+);

@@ -140,6 +140,7 @@
         border: 1px solid $light_Red;
         transition: 500ms;
         border-radius: 7px;
+        color: $white_color;
         &:focus {
           border: 1px solid $dark_orange;
           transition: 500ms;
@@ -277,6 +278,44 @@
     }
     ._info {
       @include flexCenter(column);
+    }
+  }
+}
+.top_products_section {
+  min-height: 100vh;
+  display: flex;
+  gap: 20px;
+  margin-top: 50px;
+  .left_ {
+    width: 80%;
+    min-height: 200px;
+    padding: 0 10px;
+    transition: 500ms;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.295);
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.692);
+      transition: 500ms;
+    }
+    @media (max-width: 700px) {
+      width: 100%;
+    }
+  }
+  .right_ {
+    width: 20%;
+    min-height: 200px;
+    background-color: rgba(0, 0, 0, 0.295);
+    transition: 500ms;
+    padding: 10px;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.692);
+      transition: 500ms;
+    }
+
+    @media (max-width: 700px) {
+      display: none;
     }
   }
 }
