@@ -59,7 +59,6 @@ function SidebarIngredientBox({ amount, title, ingredientData }: SideTypes) {
 
     setChosenIngredients(numChecked);
   };
-
   return (
     <>
       <div className="sidebar_ingredient_box">
@@ -84,33 +83,36 @@ function SidebarIngredientBox({ amount, title, ingredientData }: SideTypes) {
         {/* ingredients */}
         <main className="container">
           {ingredientData &&
-            ingredientData.map((data) => (
-              <div
-                className="ingredient"
-                key={data._id}
-                style={{
-                  backgroundColor: redux.ingredients
-                    .map((id: any) => id._id)
-                    .includes(data._id)
-                    ? "#db3a34"
-                    : "",
-                }}
-              >
-                <input
-                  type="checkBox"
-                  name={data.name}
-                  id={`_${data._id}`}
-                  onChange={(e) => {
-                    inputHandler(e, data);
+            ingredientData
+              .slice()
+              .sort((a, b) => a.name.localeCompare(b.name))
+              .map((data) => (
+                <div
+                  className="ingredient"
+                  key={data._id}
+                  style={{
+                    backgroundColor: redux.ingredients
+                      .map((id: any) => id._id)
+                      .includes(data._id)
+                      ? "#db3a34"
+                      : "",
                   }}
-                  checked={redux.ingredients
-                    .map((id: any) => id._id)
-                    .includes(data._id)}
-                  data-group={title}
-                />
-                <label htmlFor={`_${data._id}`}>{data.name}</label>
-              </div>
-            ))}
+                >
+                  <input
+                    type="checkBox"
+                    name={data.name}
+                    id={`_${data._id}`}
+                    onChange={(e) => {
+                      inputHandler(e, data);
+                    }}
+                    checked={redux.ingredients
+                      .map((id: any) => id._id)
+                      .includes(data._id)}
+                    data-group={title}
+                  />
+                  <label htmlFor={`_${data._id}`}>{data.name}</label>
+                </div>
+              ))}
         </main>
       </div>
     </>

@@ -15,7 +15,7 @@ function ChosenInformation() {
 
   const dispatch = useAppDispatch();
   const redux: any = useAppSelector((state) => state.ingredientClient);
-  const recipeFilteredApi: any = useAppSelector((state) => state.recipe);
+  // const recipeFilteredApi: any = useAppSelector((state) => state.recipe);
 
   const { handleSubmit } = useForm<any>();
   const onSubmitAllRecipes: SubmitHandler<any> = (data) => {
@@ -31,12 +31,10 @@ function ChosenInformation() {
       .unwrap()
       .then((val: any) => {
         setRecipeAmount(val.result);
-        // localStorage.setItem("receipts", JSON.stringify(val.data));
         dispatch(setFilteredRecipe(val.data));
       })
       .catch((err: Error) => console.log(err));
   };
-
   return (
     <section className="chosen_information">
       {/* Chosen Ingredients */}
@@ -89,7 +87,7 @@ function ChosenInformation() {
       </form>
 
       {/* Chosen Category */}
-
+      {/* 
       <div className="chosen_category">
         <h2>შემოთავაზებული კატეგორიები</h2>
         <aside>
@@ -101,7 +99,7 @@ function ChosenInformation() {
               </div>
             ))}
         </aside>
-      </div>
+      </div> */}
     </section>
   );
 }

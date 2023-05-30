@@ -1,5 +1,5 @@
 .sidebar_ingredient_box {
-  min-height: 250px;
+  height: 250px;
   background-color: $dark_blue;
   display: flex;
   flex-direction: column;
@@ -61,6 +61,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
+    overflow-y: auto;
     .ingredient {
       padding: 5px;
       background-color: $light_blue;
@@ -1199,5 +1200,19 @@
         margin-top: 10px;
       }
     }
+  }
+}
+._wrapper {
+  width: 100%;
+  position: absolute;
+  border-radius: 7px;
+  z-index: 20;
+  overflow-y: auto;
+  background-color: rgba(0, 0, 0, 0.418);
+  transition: 500ms;
+  border: 1px solid black;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.836);
+    transition: 500ms;
   }
 }

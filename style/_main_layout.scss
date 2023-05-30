@@ -9,7 +9,6 @@
 .main_sidebar {
   min-width: 260px;
   height: 100vh;
-  background-color: cadetblue;
   display: flex;
   flex-direction: column;
   overflow-y: auto;
@@ -93,6 +92,57 @@
           width: 100%;
           height: 100%;
           object-fit: contain;
+        }
+      }
+
+      ._wrapper {
+        max-height: 200px;
+        min-height: 100px;
+        bottom: -210px;
+        padding: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      
+        .ingredientBox {
+          padding: 5px 10px;
+          background-color: $light_blue;
+          width: fit-content;
+          height: fit-content;
+          position: relative;
+          @include flexCenter(row);
+          cursor: pointer;
+          border-radius: 3px;
+
+          &:hover {
+            transition: 500ms;
+            background-color: $dark_green;
+            label {
+              color: $white_color;
+            }
+          }
+          input {
+            position: absolute;
+            cursor: pointer;
+            opacity: 0;
+          }
+          input:checked ~ label {
+            color: $white_color;
+          }
+          label {
+            cursor: pointer;
+            color: $dark_blue;
+            transition: 500ms;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+          }
+        }
+        .ingredient_loading_text{
+          color: $white_color;
+          letter-spacing: 1px;
+          text-align: center;
+          line-height: 1.5em;
+          font-weight: 700;
         }
       }
     }
