@@ -4,6 +4,7 @@ import {
   getAllRecipe,
   getRecipeById,
   getRecipeBySlug,
+  getRecipeForPagination,
   getRecipesAnnuallyStats,
 } from "./action";
 
@@ -16,6 +17,8 @@ interface RecipeTypes {
   annuallyIsLoading: boolean;
   slugRecipe: any;
   slugRecipeIsLoading: boolean;
+  recipesForPagination: any;
+  paginationIsLoading: boolean;
 }
 
 export const recipeAPISlice = createSlice({
@@ -29,6 +32,8 @@ export const recipeAPISlice = createSlice({
     annuallyIsLoading: true,
     slugRecipe: [],
     slugRecipeIsLoading: true,
+    recipesForPagination: [],
+    paginationIsLoading: true,
   },
   reducers: {},
   extraReducers: (builder) => {
@@ -87,6 +92,18 @@ export const recipeAPISlice = createSlice({
     });
     builder.addCase(getRecipeBySlug.rejected, (state, action) => {
       state.slugRecipeIsLoading = true;
+    });
+
+    /* Pagination */
+    builder.addCase(getRecipeForPagination.pending, (state) => {
+      state.paginationIsLoading = true;
+    });
+    builder.addCase(getRecipeForPagination.fulfilled, (state, action) => {
+      (state.paginationIsLoading = false),
+        (state.recipesForPagination = action.payload);
+    });
+    builder.addCase(getRecipeForPagination.rejected, (state, action) => {
+      state.paginationIsLoading = true;
     });
   },
 });

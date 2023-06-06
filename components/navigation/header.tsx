@@ -16,7 +16,14 @@ function MainPageHeader() {
             <Link href={"/recipes-by-ingredients"}>რეცეპტორი</Link>
           </li>
           <li>
-            <Link href={"/all-receipts"}>ყველა კერძი</Link>
+            <Link
+              href={{
+                pathname: '/all-receipts',
+                query: { page: "1", limit: "20" },
+              }}
+            >
+              ყველა კერძი
+            </Link>
           </li>
         </ul>
 

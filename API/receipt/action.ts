@@ -95,3 +95,17 @@ export const getRecipeBySlug = createAsyncThunk(
     }
   }
 );
+
+export const getRecipeForPagination = createAsyncThunk(
+  "recipeAPI/getRecipeForPagination",
+  async (params: { page: number; limit: number }, { rejectWithValue }) => {
+    try {
+      const { data } = await axiosUnAuthorized.get(
+        `api/v1/recipe?page=${params.page}&limit=${params.limit}`
+      );
+      return data;
+    } catch (err: any) {
+      throw rejectWithValue(err.message);
+    }
+  }
+);
