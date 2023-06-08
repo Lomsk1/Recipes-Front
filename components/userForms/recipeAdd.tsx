@@ -6,7 +6,6 @@ import { ReactNode, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import LoadingAnimation from "../loading/loading";
 import PopupMiddle from "../popup/middle";
-import WrapperContainer from "../wrapper";
 
 type FormValues = {
   name: string;
@@ -109,7 +108,6 @@ function RecipeAddForm({
   } = useForm<FormValues>();
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
-    console.log(data);
     const formData = new FormData();
     formData.append("name", data.name);
     formData.append("shortDescription", data.shortDescription);

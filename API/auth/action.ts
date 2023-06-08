@@ -1,4 +1,4 @@
-import { axiosUnAuthorized } from "@/helper/axios";
+import { axiosInstance, axiosUnAuthorized } from "@/helper/axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const authLogin = createAsyncThunk(
@@ -36,6 +36,21 @@ export const authRegister = createAsyncThunk(
         firstName: params.firstName,
         lastName: params.lastName,
       });
+      return data;
+    } catch (err: any) {
+      throw rejectWithValue(err.response.data);
+    }
+  }
+);
+
+export const userUpdate = createAsyncThunk(
+  "auth/userUpdate",
+  async (params: { userData: any }, { rejectWithValue }) => {
+    try {
+      const { data } = await axiosInstance.patch(
+        "api/v1/users/updateMe",
+        params.userData
+      );
       return data;
     } catch (err: any) {
       throw rejectWithValue(err.response.data);

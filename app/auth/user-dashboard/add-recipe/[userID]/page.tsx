@@ -1,8 +1,4 @@
-import CookingLoader from "@/components/loading/cooking";
-import RecipesWithDetails from "@/components/recipeContainer/withDetails";
 import RecipeAddForm from "@/components/userForms/recipeAdd";
-import RecipeDetailForUser from "@/components/userForms/recipeDetaile";
-import { redirect } from "next/navigation";
 
 async function getIngredients() {
   const result = await fetch(

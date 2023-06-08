@@ -430,3 +430,113 @@
     }
   }
 }
+.user_info_change_form {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  button {
+    width: fit-content;
+    padding: 5px 30px;
+    cursor: pointer;
+  }
+  form {
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 50px;
+    header {
+      width: 100%;
+      @include flexCenter(column);
+      background-color: transparent;
+      .img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        img {
+          width: 100% !important;
+          height: 100% !important;
+          object-fit: fill;
+          object-position: center;
+          border-radius: 50%;
+        }
+      }
+    }
+    .each {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 50px;
+      border: 1px solid $dark_orange;
+      padding: 10px;
+      border-radius: 10px;
+      h4 {
+        font-size: 1.3rem;
+        letter-spacing: 2px;
+        color: $light_blue;
+      }
+      p {
+        font-size: 1.5rem;
+        letter-spacing: 1px;
+        color: $white_color;
+        text-decoration: underline;
+      }
+    }
+    .input {
+      width: 90%;
+      min-height: 50px;
+      max-width: 400px;
+      margin-top: 20px;
+      input[type="file"] {
+        height: fit-content;
+      }
+      input[type="file"]::file-selector-button {
+        margin-right: 20px;
+        border: none;
+        background: $light_blue;
+        padding: 5px 10px;
+        border-radius: 10px;
+        color: #fff;
+        cursor: pointer;
+      }
+
+      input {
+        width: 100%;
+        height: 40px;
+        padding: 20px;
+        outline: none;
+        background: transparent;
+        border: 1px solid $light_Red;
+        border-radius: 7px;
+        color: $white_color;
+        &:not(:hover) {
+          transition: 500ms;
+        }
+        &:focus {
+          transition: 500ms;
+          border-color: $error_red;
+        }
+      }
+    }
+  }
+  button {
+    padding: 8px 40px;
+    width: fit-content;
+    height: fit-content;
+    background-color: transparent;
+    border: 1px solid $dark_green;
+    border-radius: 6px;
+    color: $white_color;
+    cursor: pointer;
+    &:last-child {
+      margin: 30px auto;
+    }
+    &:hover {
+      transition: 500ms;
+      background-color: $dark_green;
+    }
+    &:not(:hover) {
+      transition: 500ms;
+    }
+  }
+}
