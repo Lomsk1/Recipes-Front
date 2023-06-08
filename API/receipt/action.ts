@@ -110,6 +110,18 @@ export const getRecipeForPagination = createAsyncThunk(
   }
 );
 
+export const createRecipe = createAsyncThunk(
+  "recipeAPI/createRecipe",
+  async (params: { recipe: any }, { rejectWithValue }) => {
+    try {
+      const { data } = await axiosInstance.post("api/v1/recipe", params.recipe);
+      return data;
+    } catch (err: any) {
+      throw rejectWithValue(err.message);
+    }
+  }
+);
+
 export const updateRecipe = createAsyncThunk(
   "recipeAPI/updateRecipe",
   async (params: { recipeID: string; recipe: any }, { rejectWithValue }) => {

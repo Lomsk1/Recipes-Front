@@ -200,7 +200,7 @@ function RecipeDetailForUser() {
 
           {/* Nutrition */}
           <div className="text_info">
-            <label htmlFor="recipe_difficulty">საკვები შემადგენლობა:</label>
+            <label htmlFor="recipe_nutrition">საკვები შემადგენლობა:</label>
 
             <aside>
               {!isLoading &&
@@ -234,9 +234,9 @@ function RecipeDetailForUser() {
             </aside>
           </div>
 
-          {/* Nutrition */}
+          {/* Cooking Process */}
           <div className="text_info">
-            <label htmlFor="recipe_difficulty">საკვები შემადგენლობა:</label>
+            <label htmlFor="recipe_cookingProcess">მომზადების პროცესი:</label>
 
             <aside>
               {!isLoading &&
@@ -244,7 +244,7 @@ function RecipeDetailForUser() {
                 receptDataById.data.cookingProcess.map((data, i) => (
                   <fieldset key={data._id} className="both_info">
                     <legend>პროცესი N{data.step}.</legend>
-                    {/* Name */}
+                    {/* Process Numeric */}
                     <div>
                       <label htmlFor={data._id + i}>პროცესის რიგითობა:</label>
                       <input
@@ -254,7 +254,7 @@ function RecipeDetailForUser() {
                         min={0}
                       />
                     </div>
-                    {/* Weight */}
+                    {/* Process Description */}
                     <div>
                       <label htmlFor={data._id}>აღწერილობა:</label>
                       <textarea
@@ -269,7 +269,7 @@ function RecipeDetailForUser() {
 
           {/* Necessary  */}
           <div className="text_info">
-            <label htmlFor="recipe_difficulty">საჭირო ინგრედიენტები:</label>
+            <label htmlFor="recipe_necessary">საჭირო ინგრედიენტები:</label>
 
             <aside>
               {!isLoading &&

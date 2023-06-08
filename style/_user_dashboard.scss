@@ -140,7 +140,46 @@
     .detailed_container {
       margin-top: 50px;
       min-height: 100px;
-      
+    }
+  }
+}
+.dashboard_add_recipe {
+  min-height: 500px;
+  margin-top: 50px;
+  header {
+    h2 {
+      font-size: 1.5rem;
+      letter-spacing: 1.5px;
+      color: $light_white;
+    }
+  }
+  .form_container {
+    min-height: 400px;
+    margin-top: 50px;
+    form {
+      .text_info {
+        .actions {
+          display: flex;
+          flex-direction: column;
+          gap: 5px;
+          div {
+            padding: 5px 20px;
+            background-color: $dark_green;
+            color: $white_color;
+            cursor: pointer;
+            border-radius: 6px;
+            border: 1px solid transparent;
+            &:hover {
+              transition: 500ms;
+              border-color: $dark_green;
+              background-color: transparent;
+            }
+            &:not(:hover) {
+              transition: 500ms;
+            }
+          }
+        }
+      }
     }
   }
 }

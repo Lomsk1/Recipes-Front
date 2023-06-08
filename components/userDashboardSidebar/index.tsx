@@ -24,7 +24,7 @@ function DashboardSidebar({ userID }: { userID: string }) {
               name: "ჩემი რეცეპტები",
             },
             {
-              href: `/auth/user-dashboard/add-recipe`,
+              href: `/auth/user-dashboard/add-recipe/${userID}`,
               name: "რეცეპტის დამატება",
             },
           ]}
