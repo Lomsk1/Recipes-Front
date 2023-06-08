@@ -109,3 +109,18 @@ export const getRecipeForPagination = createAsyncThunk(
     }
   }
 );
+
+export const updateRecipe = createAsyncThunk(
+  "recipeAPI/updateRecipe",
+  async (params: { recipeID: string; recipe: any }, { rejectWithValue }) => {
+    try {
+      const { data } = await axiosInstance.patch(
+        `api/v1/recipe/${params.recipeID}`,
+        params.recipe
+      );
+      return data;
+    } catch (err: any) {
+      throw rejectWithValue(err.message);
+    }
+  }
+);

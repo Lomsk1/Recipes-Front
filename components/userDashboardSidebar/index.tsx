@@ -19,6 +19,14 @@ function DashboardSidebar({ userID }: { userID: string }) {
               href: `/auth/user-dashboard/favorites/${userID}`,
               name: "ჩემი ფავორიტები",
             },
+            {
+              href: `/auth/user-dashboard/my-recipes/${userID}`,
+              name: "ჩემი რეცეპტები",
+            },
+            {
+              href: `/auth/user-dashboard/add-recipe`,
+              name: "რეცეპტის დამატება",
+            },
           ]}
         />
       </nav>

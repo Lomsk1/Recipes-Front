@@ -45,9 +45,11 @@ export default async function UserDashboardLayout({
     <>
       {data.status === "success" ? (
         <section className="user_dashboard">
+          {/* Side bar */}
           <DashboardSidebar userID={data.data._id} />
           <UserSidebarBurger />
           <UserDashboardSideProvider />
+          {/* Header */}
           <section className="dashboard_content">
             <header className="dashboard_header">
               <h1>მოგესალმებით, გიორგი</h1>
@@ -55,6 +57,7 @@ export default async function UserDashboardLayout({
                 <Image src={test} alt="avatar" width={50} height={50} />
               </div>
             </header>
+            {/* Children */}
             {children}
           </section>
         </section>

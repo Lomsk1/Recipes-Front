@@ -48,7 +48,6 @@ async function UserDashboardFavorites({
     userID: params.userID,
   });
 
-  console.log(favoriteRecipesData);
   return (
     <>
       <main className="dashboard_favorites">

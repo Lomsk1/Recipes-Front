@@ -115,3 +115,32 @@
     gap: 20px;
   }
 }
+.dashboard_my_recipes {
+  min-height: 500px;
+  margin-top: 50px;
+  .recipe_container {
+    padding: 10px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(186px, 1fr));
+    gap: 20px;
+  }
+
+  .recipe_detailed {
+    min-height: 100px;
+    margin-top: 100px;
+    border: 1px solid $light_Red;
+    background-color: $black_bg_light;
+    padding: 5px;
+    border-radius: 10px;
+    h2 {
+      font-size: 1.2rem;
+      letter-spacing: 1.5px;
+      color: $light_white;
+    }
+    .detailed_container {
+      margin-top: 50px;
+      min-height: 100px;
+      
+    }
+  }
+}
