@@ -36,7 +36,7 @@ async function UserDashboardPage() {
 
         {/* I must add users Recipes stats */}
         <section className="about_recipes">
-          {/* <RecipeStatsCharts statsData={recipeStats} /> */}
+          <RecipeStatsCharts statsData={recipeStats} />
         </section>
       </main>
     </>

@@ -114,7 +114,7 @@ export default function PasswordConfirmationPage({
           buttonFunction={() => {
             setResponseMsg(null);
             reset();
-            // router.push('/')
+            router.push("/recipes-by-ingredients");
           }}
           buttonName="დახურვა"
           statusResponse={"პაროლის აღდგენა წარმატებით დასრულდა!"}

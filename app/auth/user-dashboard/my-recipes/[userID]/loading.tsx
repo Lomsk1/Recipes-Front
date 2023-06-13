@@ -1,6 +1,6 @@
 import CakeLoader from "@/components/loading/cake";
 
-export default function LoadingForRecipe() {
+export default function LoadingForMyRecipes() {
   return (
     <>
       <CakeLoader />

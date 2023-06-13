@@ -1,4 +1,4 @@
-import axios, { AxiosResponse } from "axios";
+import axios from "axios";
 import Cookies from "js-cookie";
 
 const baseURL = process.env.NEXT_PUBLIC_DB_HOST;
@@ -38,5 +38,3 @@ axiosInstance.interceptors.request.use(async (req) => {
 
   return req;
 });
-
-//   export default axiosInstance;

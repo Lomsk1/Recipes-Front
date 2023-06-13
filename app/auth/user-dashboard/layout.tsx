@@ -5,7 +5,6 @@ import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
 import CookingLoader from "@/components/loading/cooking";
 import UserSidebarBurger from "@/components/userDashboardSidebar/burger";
-import UserSidebarForMobile from "@/components/userDashboardSidebar/mobile";
 import UserDashboardSideProvider from "@/components/providerElements/userDashboard/mobileSide";
 
 interface UserTypes {

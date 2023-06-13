@@ -1,17 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import { useCookies } from "react-cookie";
 import logo from "../../assets/icons/receptor-logo-removebg-preview.png";
 import NavLink from "../navLink";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
-import { useAppDispatch } from "@/store/hooks";
-import { logout } from "@/API/auth/action";
 
 function DashboardSidebar({ userID }: { userID: string }) {
   const navigate = useRouter();
-  const dispatch = useAppDispatch();
 
   return (
     <aside className="dashboard_sidebar">

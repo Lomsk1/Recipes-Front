@@ -1,7 +1,6 @@
 import { authRegister } from "@/API/auth/action";
 import { useAppDispatch } from "@/store/hooks";
 import Image from "next/image";
-import Link from "next/link";
 import { useState } from "react";
 import { useCookies } from "react-cookie";
 import { SubmitHandler, useForm } from "react-hook-form";

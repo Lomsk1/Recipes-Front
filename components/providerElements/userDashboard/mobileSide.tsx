@@ -7,7 +7,7 @@ function UserDashboardSideProvider() {
     return ( 
         <>
         <Provider store={store}>
-            <UserSidebarForMobile />
+            <UserSidebarForMobile userID="" />
         </Provider>
         </>
      );

@@ -8,7 +8,6 @@ import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { setMessage } from "@/redux/client/popup/slice";
 import { useRouter } from "next/navigation";
 import { useCookies } from "react-cookie";
-import LoadingAnimation from "@/components/loading/loading";
 import CookingLoader from "@/components/loading/cooking";
 
 export default function AuthPage() {
@@ -16,7 +15,7 @@ export default function AuthPage() {
   const [isAuth, setIsAuth] = useState<boolean>(true);
   const [width, setWidth] = useState<number>(0);
   const router = useRouter();
-  const [cookie, setCookie] = useCookies(["jwt"]);
+  const [cookie] = useCookies(["jwt"]);
 
   const userGuard = async () => {
     const result = await fetch(

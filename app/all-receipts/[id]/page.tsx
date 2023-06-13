@@ -15,21 +15,6 @@ async function getData({ id }: any) {
 
   return res.json();
 }
-
-// async function getCommentData({ id }: any) {
-//   const res = await fetch(
-//     `${process.env.NEXT_PUBLIC_DB_HOST}/api/v1/comment/byRecipe/${id}`,
-//     { next: { revalidate: 10 } }
-//   );
-
-//   // Recommendation: handle errors
-//   if (!res.ok) {
-//     throw new Error("Failed to fetch data");
-//   }
-
-//   return res.json();
-// }
-
 async function getUserData() {
   const cookieStore = cookies();
   const token = cookieStore.get("jwt");
@@ -49,10 +34,8 @@ async function getUserData() {
 
 export default async function EachReceipt({
   params,
-  searchParams,
 }: {
   params: { id: string };
-  searchParams: { [key: string]: string | string[] | undefined };
 }) {
   const data = await getData({
     id: params.id,

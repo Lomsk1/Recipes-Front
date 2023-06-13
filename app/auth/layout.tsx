@@ -1,6 +1,5 @@
 "use client";
 
-import PopupMiddle from "@/components/popup/middle";
 import { store } from "@/store/store";
 import { Provider } from "react-redux";
 

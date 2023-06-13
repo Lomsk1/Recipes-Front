@@ -94,8 +94,6 @@ function MainSideBar() {
     dispatch(setIngredients(ingredientsArr));
   };
 
-  // console.log(ingredientSearchData);
-
   return (
     <section
       className="main_sidebar"

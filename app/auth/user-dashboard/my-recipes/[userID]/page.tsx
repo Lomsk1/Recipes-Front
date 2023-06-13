@@ -1,4 +1,3 @@
-// 'use client'
 import CookingLoader from "@/components/loading/cooking";
 import RecipesWithDetails from "@/components/recipeContainer/withDetails";
 import RecipeDetailForUser from "@/components/userForms/recipeDetaile";

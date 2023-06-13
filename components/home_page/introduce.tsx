@@ -1,12 +1,9 @@
 "use client";
 
-import { useAppDispatch } from "@/store/hooks";
 import { store } from "@/store/store";
 import gsap from "gsap";
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
 import { Provider } from "react-redux";
 import SearchProductBox from "../searchResults/product";
 import FirstPageSearchForm from "./form/searchForm";

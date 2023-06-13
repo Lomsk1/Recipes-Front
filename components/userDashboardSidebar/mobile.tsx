@@ -1,42 +1,60 @@
 "use client";
-import { setUserSidebarToggle } from "@/redux/client/sidebar/slice";
-import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { useAppSelector } from "@/store/hooks";
 import Image from "next/image";
 import logo from "../../assets/icons/receptor-logo-removebg-preview.png";
 import NavLink from "../navLink";
+import { useRouter } from "next/navigation";
+import Cookies from "js-cookie";
+import { RemoveScroll } from "react-remove-scroll";
 
-function UserSidebarForMobile() {
+function UserSidebarForMobile({ userID }: { userID: string }) {
   const { userSidebarIsOpen } = useAppSelector((state) => state.sidebar);
-  const dispatch = useAppDispatch();
+  const navigate = useRouter();
 
   return (
     <>
       {userSidebarIsOpen && (
         <aside className="userSidebarForMobile">
-          <header>
-            <Image src={logo} alt="logo" width={100} height={100} priority />
-          </header>
-
-          <nav>
-            <NavLink
-              navLinks={[
-                {
-                  href: "/auth/user-dashboard",
-                  name: "მიმოხილვა",
-                  //   onClick() {
-                  //     dispatch(setUserSidebarToggle(false));
-                  //   },
-                },
-                {
-                  href: "/auth/user-dashboard/favorites",
-                  name: "ჩემი ფავორიტები",
-                  //   onClick() {
-                  //     dispatch(setUserSidebarToggle(false));
-                  //   },
-                },
-              ]}
-            />
-          </nav>
+          <RemoveScroll>
+            <header onClick={() => navigate.push("/recipes-by-ingredients")}>
+              <Image src={logo} alt="logo" width={100} height={100} priority />
+            </header>
+            <nav>
+              <NavLink
+                navLinks={[
+                  { href: "/auth/user-dashboard", name: "მიმოხილვა" },
+                  {
+                    href: `/auth/user-dashboard/favorites/${userID}`,
+                    name: "ჩემი ფავორიტები",
+                  },
+                  {
+                    href: `/auth/user-dashboard/my-recipes/${userID}`,
+                    name: "ჩემი რეცეპტები",
+                  },
+                  {
+                    href: `/auth/user-dashboard/add-recipe/${userID}`,
+                    name: "რეცეპტის დამატება",
+                  },
+                  {
+                    href: `/auth/user-dashboard/info/${userID}`,
+                    name: "ინფო",
+                  },
+                  {
+                    href: `/auth/user-dashboard/password-change/${userID}`,
+                    name: "პაროლის შეცვლა",
+                  },
+                ]}
+              />
+              <button
+                onClick={() => {
+                  Cookies.remove("jwt");
+                  navigate.push("/");
+                }}
+              >
+                გამოსვლა
+              </button>
+            </nav>
+          </RemoveScroll>
         </aside>
       )}
     </>

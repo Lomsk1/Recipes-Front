@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getCommentByRecipe } from "./action";
+import { getCommentByRecipe } from "../comment/action";
 
 interface CommentTypes {
   commentData: any;

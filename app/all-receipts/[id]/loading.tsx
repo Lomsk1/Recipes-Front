@@ -1,7 +1,9 @@
-export default function Loading() {
+import CakeLoader from "@/components/loading/cake";
+
+export default function LoadingForRecipeByID() {
   return (
     <>
-      <p>loading....</p>
+      <CakeLoader />
     </>
   );
 }

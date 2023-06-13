@@ -142,58 +142,70 @@ function RecipeDetailForUser() {
           {/* Name */}
           <div className="text_info">
             <label htmlFor="recipe_name">სახელი:</label>
-            <input type="text" id="recipe_name" {...register("name")} />
+            <div className="inp">
+              <input type="text" id="recipe_name" {...register("name")} />
+            </div>
           </div>
 
           {/* Short Description */}
           <div className="text_info">
             <label htmlFor="recipe_shortDescription">მოკლე აღწერა:</label>
-            <textarea
-              id="recipe_shortDescription"
-              {...register("shortDescription")}
-            />
+            <div className="inp">
+              <textarea
+                id="recipe_shortDescription"
+                {...register("shortDescription")}
+              />
+            </div>
           </div>
 
           {/* Cooking Time */}
           <div className="text_info">
             <label htmlFor="recipe_cookingTime">მომზადების დრო:</label>
-            <input
-              type="text"
-              id="recipe_cookingTime"
-              {...register("cookingTime")}
-            />
+            <div className="inp">
+              <input
+                type="text"
+                id="recipe_cookingTime"
+                {...register("cookingTime")}
+              />
+            </div>
           </div>
 
           {/* Portion */}
           <div className="text_info">
             <label htmlFor="recipe_portion">პორცია:</label>
-            <input
-              type="number"
-              min={0}
-              id="recipe_portion"
-              {...register("portion")}
-            />
+            <div className="inp">
+              <input
+                type="number"
+                min={0}
+                id="recipe_portion"
+                {...register("portion")}
+              />
+            </div>
           </div>
 
           {/* Image */}
           <div className="text_info">
-            <label htmlFor="recipe_image">ფოტოს ცვლილება:</label>
-            <input
-              type="file"
-              id="recipe_image"
-              {...register("image")}
-              accept="image/*"
-            />
+            <label htmlFor="recipe_image">ფოტოს ცვლილება:</label>{" "}
+            <div className="inp">
+              <input
+                type="file"
+                id="recipe_image"
+                {...register("image")}
+                accept="image/*"
+              />
+            </div>
           </div>
 
           {/* Difficulty */}
           <div className="text_info">
             <label htmlFor="recipe_difficulty">სირთულე:</label>
-            <select id="recipe_difficulty" {...register("difficulty")}>
-              <option value="მარტივი">მარტივი</option>
-              <option value="საშუალო">საშუალო</option>
-              <option value="რთული">რთული</option>
-            </select>
+            <div className="inp">
+              <select id="recipe_difficulty" {...register("difficulty")}>
+                <option value="მარტივი">მარტივი</option>
+                <option value="საშუალო">საშუალო</option>
+                <option value="რთული">რთული</option>
+              </select>
+            </div>
           </div>
 
           {/* Object Data */}
@@ -213,21 +225,26 @@ function RecipeDetailForUser() {
                     {/* Name */}
                     <div>
                       <label htmlFor={data.name}>სახელი:</label>
-                      <input
-                        type="text"
-                        id={data.name}
-                        {...register(`nutrition.${i}.name`)}
-                      />
+                      <div className="inp">
+                        <input
+                          type="text"
+                          id={data.name}
+                          {...register(`nutrition.${i}.name`)}
+                        />
+                      </div>
                     </div>
+
                     {/* Weight */}
                     <div>
                       <label htmlFor={data._id}>ოდენობა:</label>
-                      <input
-                        type="number"
-                        min={0}
-                        id={data._id}
-                        {...register(`nutrition.${i}.weight`)}
-                      />
+                      <div className="inp">
+                        <input
+                          type="number"
+                          min={0}
+                          id={data._id}
+                          {...register(`nutrition.${i}.weight`)}
+                        />
+                      </div>
                     </div>
                   </fieldset>
                 ))}
@@ -247,20 +264,24 @@ function RecipeDetailForUser() {
                     {/* Process Numeric */}
                     <div>
                       <label htmlFor={data._id + i}>პროცესის რიგითობა:</label>
-                      <input
-                        type="number"
-                        id={data._id + i}
-                        {...register(`cookingProcess.${i}.step`)}
-                        min={0}
-                      />
+                      <div className="inp">
+                        <input
+                          type="number"
+                          id={data._id + i}
+                          {...register(`cookingProcess.${i}.step`)}
+                          min={0}
+                        />
+                      </div>
                     </div>
                     {/* Process Description */}
                     <div>
                       <label htmlFor={data._id}>აღწერილობა:</label>
-                      <textarea
-                        id={data._id}
-                        {...register(`cookingProcess.${i}.description`)}
-                      />
+                      <div className="inp">
+                        <textarea
+                          id={data._id}
+                          {...register(`cookingProcess.${i}.description`)}
+                        />
+                      </div>
                     </div>
                   </fieldset>
                 ))}
@@ -280,11 +301,13 @@ function RecipeDetailForUser() {
                     {/* Name */}
                     <div>
                       <label htmlFor={data._id}>სახელი:</label>
+                      <div className="inp">
+
                       <input
                         type="text"
                         id={data._id}
                         {...register(`necessaryIngredients.${i}.name`)}
-                      />
+                      /></div>
                     </div>
                   </fieldset>
                 ))}
