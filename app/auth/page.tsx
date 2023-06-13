@@ -29,6 +29,8 @@ export default function AuthPage() {
         },
       }
     );
+    if (!result.ok) setIsAuth(false);
+
     return result;
   };
 
@@ -39,10 +41,10 @@ export default function AuthPage() {
           if (result.status === 200) router.push("/auth/user-dashboard");
         })
         .catch((error) => {
-          setIsAuth(false)
+          setIsAuth(false);
         });
-    } else{
-      setIsAuth(false)
+    } else {
+      setIsAuth(false);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

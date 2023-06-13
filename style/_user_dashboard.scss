@@ -198,3 +198,18 @@
     margin-top: 50px;
   }
 }
+.dashboard_password_change {
+  min-height: 500px;
+  margin-top: 50px;
+  header {
+    h2 {
+      font-size: 1.5rem;
+      letter-spacing: 1.5px;
+      color: $light_white;
+    }
+  }
+  .information {
+    min-height: 400px;
+    margin-top: 50px;
+  }
+}

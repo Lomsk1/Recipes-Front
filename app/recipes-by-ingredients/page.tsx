@@ -11,16 +11,24 @@ import { useEffect, useRef, useState } from "react";
 import { useOnClickOutside } from "usehooks-ts";
 import emptyStateImage from "../../assets/images/emptyYellow.png";
 import Image from "next/image";
-import { axiosInstance } from "@/helper/axios";
+import Cookies from "js-cookie";
 
 async function getUserData() {
-  const result = await axiosInstance(`api/v1/users/me`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  return result;
+  const token = Cookies.get("jwt") || null;
+
+  const result = await fetch(
+    `${process.env.NEXT_PUBLIC_DB_HOST}/api/v1/users/me`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+  if (!result.ok) return null;
+
+  return result.json();
 }
 
 export default function ChooseIngredients() {
@@ -41,21 +49,24 @@ export default function ChooseIngredients() {
   // User & Favorite
 
   useEffect(() => {
-    const userData = async () => {
-      const data = await getUserData();
-      setUserFetch(data.data);
-    };
-    if (userData) userData();
+    if (Cookies.get("jwt")) {
+      const userData = async () => {
+        const data = await getUserData();
+        setUserFetch(data);
+      };
+
+      if (userData) userData();
+    }
   }, []);
 
   const handlerUserFunction = async () => {
     const data = await getUserData();
-    setUserFetch(data.data);
+    setUserFetch(data);
   };
   return (
     <main className="main_page">
       {/* Header && NAvigation */}
-      <MainPageHeader />
+      <MainPageHeader userData={userFetch} />
 
       {/* User Choose Information */}
       <ChosenInformation />
@@ -107,7 +118,7 @@ export default function ChooseIngredients() {
             userFunction={() => handlerUserFunction()}
           />
         ) : (
-          <div>loading...</div>
+          <div></div>
         )}
       </section>
       {/* Burger bar */}

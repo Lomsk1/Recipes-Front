@@ -55,7 +55,7 @@ function UserInfoChangeForm({ userStatus, userData }: UserInfoTypes) {
     if (data.lastName) formData.append("lastName", data.lastName);
 
     if (data.avatar.length > 0) {
-      formData.append("image", data.avatar[0]);
+      formData.append("avatar", data.avatar[0]);
     }
     dispatch(
       userUpdate({

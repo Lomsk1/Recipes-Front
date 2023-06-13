@@ -9,6 +9,7 @@
   header {
     height: 100px;
     overflow: hidden;
+    cursor: pointer;
     img {
       width: auto;
       height: auto;
@@ -43,6 +44,18 @@
         color: $dashboard_main_color_blue;
         background-color: $dark_orange;
       }
+    }
+    button {
+      margin-top: 30px;
+      background-color: transparent;
+      color: #d00000;
+      font-size: 1.1rem;
+      letter-spacing: 1px;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      background-color: rgba(0, 0, 0, 0.363);
+      border: none;
     }
   }
 }
@@ -153,6 +166,18 @@
         color: $dashboard_main_color_blue;
         background-color: $dark_orange;
       }
+    }
+    button {
+      margin-top: 30px;
+      background-color: transparent;
+      color: #d00000;
+      font-size: 1.1rem;
+      letter-spacing: 1px;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      background-color: rgba(0, 0, 0, 0.363);
+      border: none;
     }
   }
 }
@@ -531,6 +556,82 @@
     &:last-child {
       margin: 30px auto;
     }
+    &:hover {
+      transition: 500ms;
+      background-color: $dark_green;
+    }
+    &:not(:hover) {
+      transition: 500ms;
+    }
+  }
+}
+.password_change_form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  margin-top: 50px;
+  .password_input {
+    position: relative;
+    width: 90%;
+    max-width: 400px;
+    @include flexCenter(column);
+    span {
+      margin-top: 5px;
+    }
+    input {
+      width: 100%;
+      height: 50px;
+      outline: none;
+      background: transparent;
+      border: 1px solid $dark_orange;
+      border-radius: 6px;
+      padding: 0 40px 0 24px;
+      color: $white_color;
+      letter-spacing: 1px;
+      transition: 500ms;
+      &:focus {
+        border: 1px solid $dark_Red;
+        transition: 500ms;
+      }
+      &:focus + label {
+        top: -10px;
+        transition: 500ms;
+      }
+      &:not(:placeholder-shown) ~ label {
+        top: -10px;
+        transition: 500ms;
+      }
+    }
+    label {
+      position: absolute;
+      top: 16px;
+      left: 20px;
+      font-size: 0.8rem;
+      color: $light_blue;
+      padding: 0 4px;
+      background-color: $dashboard_main_color_blue;
+      transition: 500ms;
+      cursor: text;
+    }
+    .icon {
+      position: absolute;
+      right: 10px;
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+    }
+  }
+  button {
+    padding: 8px 40px;
+    width: fit-content;
+    height: fit-content;
+    margin: 30px auto;
+    background-color: transparent;
+    border: 1px solid $dark_green;
+    border-radius: 6px;
+    color: $white_color;
+    cursor: pointer;
     &:hover {
       transition: 500ms;
       background-color: $dark_green;

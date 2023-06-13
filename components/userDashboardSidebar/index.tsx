@@ -1,13 +1,21 @@
 "use client";
 
 import Image from "next/image";
+import { useCookies } from "react-cookie";
 import logo from "../../assets/icons/receptor-logo-removebg-preview.png";
 import NavLink from "../navLink";
+import { useRouter } from "next/navigation";
+import Cookies from "js-cookie";
+import { useAppDispatch } from "@/store/hooks";
+import { logout } from "@/API/auth/action";
 
 function DashboardSidebar({ userID }: { userID: string }) {
+  const navigate = useRouter();
+  const dispatch = useAppDispatch();
+
   return (
     <aside className="dashboard_sidebar">
-      <header>
+      <header onClick={() => navigate.push("/recipes-by-ingredients")}>
         <Image src={logo} alt="logo" width={100} height={100} priority />
       </header>
 
@@ -31,8 +39,21 @@ function DashboardSidebar({ userID }: { userID: string }) {
               href: `/auth/user-dashboard/info/${userID}`,
               name: "ინფო",
             },
+            {
+              href: `/auth/user-dashboard/password-change/${userID}`,
+              name: "პაროლის შეცვლა",
+            },
           ]}
         />
+
+        <button
+          onClick={() => {
+            Cookies.remove("jwt");
+            navigate.push("/");
+          }}
+        >
+          გამოსვლა
+        </button>
       </nav>
     </aside>
   );

@@ -120,16 +120,20 @@ function RecipeBox({
           </button>
         ) : (
           <button
-            onClick={() =>
-              dispatch(
-                createRecipeFavorite({
-                  user: userData.data._id,
-                  recipeID: id,
-                })
-              )
-                .unwrap()
-                .then(() => userFunction())
-            }
+            onClick={() => {
+              if (userData) {
+                dispatch(
+                  createRecipeFavorite({
+                    user: userData.data._id,
+                    recipeID: id,
+                  })
+                )
+                  .unwrap()
+                  .then(() => userFunction());
+              } else {
+                router.push("/auth");
+              }
+            }}
           >
             <Image src={heartEmptyIcon} alt="heart" width={15} height={15} />
           </button>

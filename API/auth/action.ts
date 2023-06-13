@@ -57,3 +57,48 @@ export const userUpdate = createAsyncThunk(
     }
   }
 );
+
+export const passwordUpdate = createAsyncThunk(
+  "auth/passwordUpdate",
+  async (
+    params: {
+      password: {
+        password: string;
+        passwordConfirm: string;
+        passwordCurrent: string;
+      };
+    },
+    { rejectWithValue }
+  ) => {
+    try {
+      const { data } = await axiosInstance.patch(
+        "api/v1/users/updateMyPassword",
+        {
+          passwordCurrent: params.password.passwordCurrent,
+          password: params.password.password,
+          passwordConfirm: params.password.passwordConfirm,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      return data;
+    } catch (err: any) {
+      throw rejectWithValue(err.response.data);
+    }
+  }
+);
+
+export const logout = createAsyncThunk(
+  "auth/logout",
+  async (payload, { rejectWithValue }) => {
+    try {
+      const { data } = await axiosInstance.post("api/v1/users/logout");
+      return data;
+    } catch (err:any) {
+      throw rejectWithValue(err.message);
+    }
+  }
+);

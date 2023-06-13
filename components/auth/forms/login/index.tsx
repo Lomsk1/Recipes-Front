@@ -8,6 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { useCookies } from "react-cookie";
+import Cookies from "js-cookie";
 import { SubmitHandler, useForm } from "react-hook-form";
 import googleIcon from "../../../../assets/icons/google.png";
 
@@ -17,7 +18,7 @@ interface FormValues {
 }
 
 function LoginForm({ changeAuth }: { changeAuth: boolean }) {
-  const [cookies, setCookie] = useCookies(["jwt"]);
+  // const [cookies, setCookie] = useCookies(["jwt"]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const [errorMsg, setErrorMsg] = useState<{
@@ -42,7 +43,10 @@ function LoginForm({ changeAuth }: { changeAuth: boolean }) {
       .unwrap()
       .then((data: any) => {
         dispatch(setMessage("თქვენ წარმატებით გაიარეთ ავტორიზაცია"));
-        setCookie("jwt", data.token, {
+        // setCookie("jwt", data.token, {
+        //   expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
+        // });
+        Cookies.set("jwt", data.token, {
           expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
         });
         setIsLoading(false);
@@ -51,7 +55,7 @@ function LoginForm({ changeAuth }: { changeAuth: boolean }) {
         setErrorMsg(err);
         setIsLoading(false);
       });
-      setIsLoading(true)
+    setIsLoading(true);
   };
   return (
     <article

@@ -3,8 +3,20 @@ import Link from "next/link";
 import userAvatar from "../../assets/svg/user.svg";
 import { useRouter } from "next/navigation";
 
-function MainPageHeader() {
+interface UserDataTypes {
+  userData: {
+    status: string;
+    data: {
+      avatar: {
+        url: string;
+      };
+    };
+  };
+}
+
+function MainPageHeader({ userData }: UserDataTypes) {
   const navigate = useRouter();
+  console.log(userData);
   return (
     <header className="header_main_page">
       <nav>
@@ -18,7 +30,7 @@ function MainPageHeader() {
           <li>
             <Link
               href={{
-                pathname: '/all-receipts',
+                pathname: "/all-receipts",
                 query: { page: "1", limit: "20" },
               }}
             >
@@ -28,7 +40,16 @@ function MainPageHeader() {
         </ul>
 
         <div className="_user" onClick={() => navigate.push("/auth")}>
-          <Image src={userAvatar} alt="user avatar"></Image>
+          <Image
+            src={
+              userData && userData.status === "success"
+                ? userData.data.avatar.url
+                : userAvatar
+            }
+            alt="user avatar"
+            width={100}
+            height={100}
+          />
         </div>
       </nav>
     </header>
