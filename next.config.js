@@ -14,7 +14,12 @@ const nextConfig = {
   //   ],
   // },
   images: {
-    domains: ["localhost", "127.0.0.1", "res.cloudinary.com"],
+    domains: [
+      "localhost",
+      "127.0.0.1",
+      "res.cloudinary.com",
+      "https://receptorback-production.up.railway.app",
+    ],
   },
   i18n: {
     locales: ["ka-GE"],
