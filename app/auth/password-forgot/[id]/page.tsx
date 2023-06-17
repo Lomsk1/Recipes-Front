@@ -45,7 +45,6 @@ export default function PasswordConfirmationPage({
         setIsLoading(false);
       })
       .catch(function (error) {
-        console.log(error);
         setResponseMsg(error.response.data);
         setIsLoading(false);
       });

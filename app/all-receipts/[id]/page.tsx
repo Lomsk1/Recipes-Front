@@ -2,20 +2,19 @@ import EachReceiptDescription from "@/components/eachReceiptPage/description";
 import EachReceiptHeader from "@/components/eachReceiptPage/header";
 import { cookies } from "next/headers";
 
-// async function getData({ id }: any) {
-//   const res = await fetch(
-//     `${process.env.NEXT_PUBLIC_DB_HOST}/api/v1/recipe/${id}`,
-//     { next: { revalidate: 10 } }
-//   );
-//   // console.log(process.env.NEXT_PUBLIC_DB_HOST, "Env Which");
+async function getData({ recipeID }: { recipeID: string }) {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_DB_HOST}/api/v1/recipe/${recipeID}`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
 
-//   // Recommendation: handle errors
-//   if (!res.ok) {
-//     throw new Error("Failed to fetch data from GetRecipeIdData");
-//   }
-
-//   return res.json();
-// }
+  return res.json();
+}
 async function getUserData() {
   const cookieStore = cookies();
   const token = cookieStore.get("jwt");
@@ -38,16 +37,14 @@ export default async function EachReceipt({
 }: {
   params: { id: string };
 }) {
-  // const data = await getData({
-  //   id: params.id,
-  // });
+  const data = await getData({ recipeID: params.id });
 
   // console.log(process.env.NEXT_PUBLIC_DB_HOST);
 
   const userData = await getUserData();
   return (
-    <>სად
-      {/* {data.status === "success" && (
+    <>
+      {data.status === "success" && (
         <>
           <EachReceiptHeader
             author={data.data.author}
@@ -73,7 +70,7 @@ export default async function EachReceipt({
             userData={userData.status === "success" ? userData.data : null}
           />
         </>
-      )} */}
+      )}
     </>
   );
 }

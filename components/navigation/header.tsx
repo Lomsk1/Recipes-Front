@@ -16,7 +16,6 @@ interface UserDataTypes {
 
 function MainPageHeader({ userData }: UserDataTypes) {
   const navigate = useRouter();
-  console.log(userData);
   return (
     <header className="header_main_page">
       <nav>
