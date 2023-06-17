@@ -104,15 +104,17 @@ function PaginationRecipe({ recipeStats }: RecipeStatsTypes) {
         )}
 
         {/* Render page numbers */}
-        {Array.from({ length: totalPages }, (_, index) => (
-          <button
-            key={index + 1}
-            onClick={() => handlePageChange(index + 1)}
-            disabled={page === index + 1}
-          >
-            {index + 1}
-          </button>
-        ))}
+        {!paginationIsLoading &&
+          recipesForPagination.status === "success" &&
+          Array.from({ length: totalPages }, (_, index) => (
+            <button
+              key={index + 1}
+              onClick={() => handlePageChange(index + 1)}
+              disabled={page === index + 1}
+            >
+              {index + 1}
+            </button>
+          ))}
 
         {/* Render next page button if not on the last page */}
         {page < totalPages && (
