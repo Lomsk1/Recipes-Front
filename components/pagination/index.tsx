@@ -99,9 +99,9 @@ function PaginationRecipe({ recipeStats }: RecipeStatsTypes) {
       {/* Render pagination controls */}
       <footer>
         {/* Render previous page button if not on the first page */}
-        {/* {page > 1 && (
+        {page > 1 && (
           <button onClick={() => handlePageChange(page - 1)}>წინა</button>
-        )} */}
+        )}
 
         {/* Render page numbers */}
         {/* {!paginationIsLoading &&
@@ -117,9 +117,9 @@ function PaginationRecipe({ recipeStats }: RecipeStatsTypes) {
           ))} */}
 
         {/* Render next page button if not on the last page */}
-        {/* {page < totalPages && (
+        {page < totalPages && (
           <button onClick={() => handlePageChange(page + 1)}>შემდეგი</button>
-        )} */}
+        )}
       </footer>
     </main>
   );
