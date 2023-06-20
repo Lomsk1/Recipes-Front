@@ -83,10 +83,6 @@ function PaginationRecipe({ recipeStats }: RecipeStatsTypes) {
     return <div>Loading...</div>;
   }
 
-  const pageNumbers = [];
-  for (let i = 1; i <= totalPages; i++) {
-    pageNumbers.push(i);
-  }
   return (
     <main className="pagination_recipe">
       {/* Display the current page items */}
@@ -112,7 +108,7 @@ function PaginationRecipe({ recipeStats }: RecipeStatsTypes) {
         )}
 
         {/* Render page numbers */}
-        {/* {!paginationIsLoading &&
+        {!paginationIsLoading &&
           recipesForPagination.status === "success" &&
           Array.from({ length: totalPages }, (_, index) => (
             <button
@@ -122,46 +118,7 @@ function PaginationRecipe({ recipeStats }: RecipeStatsTypes) {
             >
               {index + 1}
             </button>
-          ))} */}
-
-        {!paginationIsLoading &&
-          recipesForPagination.status === "success" &&
-          pageNumbers.map((pageNumber, index) => {
-            // Display a range of page numbers with ellipsis
-            const currentPage = index + 1;
-            const isFirstPage = currentPage === 1;
-            const isLastPage = currentPage === totalPages;
-            const isInRange =
-              currentPage >= page - 1 && currentPage <= page + 1;
-            const showPage = isFirstPage || isLastPage || isInRange;
-
-            if (!showPage) {
-              if (
-                (index === 1 && !isInRange && page > 3) ||
-                (index === totalPages - 2 &&
-                  !isInRange &&
-                  page < totalPages - 2)
-              ) {
-                return (
-                  <span key={currentPage} className="ellipsis">
-                    ...
-                  </span>
-                );
-              }
-              return null;
-            }
-
-            return (
-              <button
-                key={currentPage}
-                onClick={() => handlePageChange(currentPage)}
-                disabled={currentPage === page}
-              >
-                {currentPage}
-              </button>
-            );
-          })}
-
+          ))}
         {/* Render next page button if not on the last page */}
         {page < totalPages && (
           <button onClick={() => handlePageChange(page + 1)}>შემდეგი</button>
