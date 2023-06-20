@@ -23,7 +23,7 @@ export default async function AllRecipePage() {
           <h1>ყველა რეცეპტი ერთ სივრცეში</h1>
         </header>
         {/* Recipe Container */}
-        {recipeStats && <PaginationRecipe recipeStats={recipeStats} />}
+        {/* {recipeStats && <PaginationRecipe recipeStats={recipeStats} />} */}
       </section>
     </>
   );
