@@ -5,7 +5,6 @@ import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { useEffect, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import RecipeContainerSquare from "../recipeContainer/square";
-import Link from "next/link";
 
 interface RecipeStatsTypes {
   recipeStats: {
@@ -94,17 +93,14 @@ function PaginationRecipe({ recipeStats }: RecipeStatsTypes) {
       <article>
         {!paginationIsLoading &&
           recipesForPagination.data.map((item) => (
-            // <RecipeContainerSquare
-            //   key={item._id}
-            //   cookingTime={item.cookingTime}
-            //   name={item.name}
-            //   imageUrl={item.image.url}
-            //   difficulty={item.difficulty}
-            //   id={item._id}
-            // />
-            <Link key={item._id} href={`#`}>
-              qwerty
-            </Link>
+            <RecipeContainerSquare
+              key={item._id}
+              cookingTime={item.cookingTime}
+              name={item.name}
+              imageUrl={item.image.url}
+              difficulty={item.difficulty}
+              id={item._id}
+            />
           ))}
       </article>
 
@@ -116,32 +112,31 @@ function PaginationRecipe({ recipeStats }: RecipeStatsTypes) {
         )}
 
         {/* Render page numbers */}
+        {/* {!paginationIsLoading &&
+          recipesForPagination.status === "success" &&
+          Array.from({ length: totalPages }, (_, index) => (
+            <button
+              key={index + 1}
+              onClick={() => handlePageChange(index + 1)}
+              disabled={page === index + 1}
+            >
+              {index + 1}
+            </button>
+          ))} */}
 
         {!paginationIsLoading &&
           recipesForPagination.status === "success" &&
-          pageNumbers.map((pageNumber, index) => {
+          Array.from({ length: totalPages }, (_, index) => {
             // Display a range of page numbers with ellipsis
             const currentPage = index + 1;
-            const isFirstPage = currentPage === 1;
-            const isLastPage = currentPage === totalPages;
-            const isInRange =
-              currentPage >= page - 1 && currentPage <= page + 1;
-            const showPage = isFirstPage || isLastPage || isInRange;
+            const showPage =
+              currentPage === page ||
+              currentPage === 1 ||
+              currentPage === totalPages ||
+              (currentPage >= page - 1 && currentPage <= page + 1);
 
             if (!showPage) {
-              if (
-                (index === 1 && !isInRange && page > 3) ||
-                (index === totalPages - 2 &&
-                  !isInRange &&
-                  page < totalPages - 2)
-              ) {
-                return (
-                  <span key={currentPage} className="ellipsis">
-                    ...
-                  </span>
-                );
-              }
-              return null;
+              return <span key={currentPage} className="ellipsis"></span>;
             }
 
             return (
