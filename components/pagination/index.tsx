@@ -5,6 +5,7 @@ import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { useEffect, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import RecipeContainerSquare from "../recipeContainer/square";
+import Link from "next/link";
 
 interface RecipeStatsTypes {
   recipeStats: {
@@ -93,14 +94,17 @@ function PaginationRecipe({ recipeStats }: RecipeStatsTypes) {
       <article>
         {!paginationIsLoading &&
           recipesForPagination.data.map((item) => (
-            <RecipeContainerSquare
-              key={item._id}
-              cookingTime={item.cookingTime}
-              name={item.name}
-              imageUrl={item.image.url}
-              difficulty={item.difficulty}
-              id={item._id}
-            />
+            // <RecipeContainerSquare
+            //   key={item._id}
+            //   cookingTime={item.cookingTime}
+            //   name={item.name}
+            //   imageUrl={item.image.url}
+            //   difficulty={item.difficulty}
+            //   id={item._id}
+            // />
+            <Link key={item._id} href={`#`}>
+              qwerty
+            </Link>
           ))}
       </article>
 
