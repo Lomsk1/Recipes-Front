@@ -124,7 +124,7 @@ function PaginationRecipe({ recipeStats }: RecipeStatsTypes) {
             </button>
           ))} */}
 
-        {!paginationIsLoading &&
+        {/* {!paginationIsLoading &&
           recipesForPagination.status === "success" &&
           Array.from({ length: totalPages }, (_, index) => {
             // Display a range of page numbers with ellipsis
@@ -148,7 +148,7 @@ function PaginationRecipe({ recipeStats }: RecipeStatsTypes) {
                 {currentPage}
               </button>
             );
-          })}
+          })} */}
 
         {/* Render next page button if not on the last page */}
         {page < totalPages && (
