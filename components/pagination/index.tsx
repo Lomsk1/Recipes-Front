@@ -79,6 +79,9 @@ function PaginationRecipe({ recipeStats }: RecipeStatsTypes) {
   // Calculate the total number of pages
   const totalPages = Math.ceil(totalRecipes / limit);
 
+  if (paginationIsLoading) {
+    return <div>Loading...</div>;
+  }
   return (
     <main className="pagination_recipe">
       {/* Display the current page items */}
@@ -115,6 +118,32 @@ function PaginationRecipe({ recipeStats }: RecipeStatsTypes) {
               {index + 1}
             </button>
           ))} */}
+
+        {!paginationIsLoading &&
+          recipesForPagination.status === "success" &&
+          Array.from({ length: totalPages }, (_, index) => {
+            // Display a range of page numbers with ellipsis
+            const currentPage = index + 1;
+            const showPage =
+              currentPage === page ||
+              currentPage === 1 ||
+              currentPage === totalPages ||
+              (currentPage >= page - 1 && currentPage <= page + 1);
+
+            if (!showPage) {
+              return <span key={currentPage} className="ellipsis"></span>;
+            }
+
+            return (
+              <button
+                key={currentPage}
+                onClick={() => handlePageChange(currentPage)}
+                disabled={currentPage === page}
+              >
+                {currentPage}
+              </button>
+            );
+          })}
 
         {/* Render next page button if not on the last page */}
         {page < totalPages && (
