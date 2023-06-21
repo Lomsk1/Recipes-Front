@@ -35,8 +35,16 @@
       @include flexCenter(row);
       gap: 2px;
       color: white !important;
-      .active {
-        background-color: red;
+      .ellipsis {
+        display: none;
+      }
+      .but {
+        &:nth-child(2) {
+          margin-right: 5px;
+        }
+        &:nth-last-child(-n + 2) {
+          margin-left: 5px;
+        }
       }
       button {
         padding: 2px 10px;
