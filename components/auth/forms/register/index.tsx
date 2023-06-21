@@ -1,4 +1,6 @@
 import { authRegister } from "@/API/auth/action";
+import LoadingAnimation from "@/components/loading/loading";
+import { setMessage } from "@/redux/client/popup/slice";
 import { useAppDispatch } from "@/store/hooks";
 import Image from "next/image";
 import { useState } from "react";
@@ -15,6 +17,8 @@ interface FormValues {
 }
 
 function RegisterForm({ changeAuth }: { changeAuth: boolean }) {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
   const [cookies, setCookie] = useCookies(["jwt"]);
 
   const [errorMsg, setErrorMsg] = useState<{
@@ -48,13 +52,17 @@ function RegisterForm({ changeAuth }: { changeAuth: boolean }) {
     )
       .unwrap()
       .then((data: any) => {
+        dispatch(setMessage("თქვენ წარმატებით გაიარეთ რეგისტრაცია"));
         setCookie("jwt", data.token, {
           expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
         });
+        setIsLoading(false);
       })
       .catch((err: any) => {
         setErrorMsg(err);
+        setIsLoading(false);
       });
+    setIsLoading(true);
   };
   return (
     <article
@@ -141,6 +149,12 @@ function RegisterForm({ changeAuth }: { changeAuth: boolean }) {
           რეგისტრაცია
         </button>
       </form>
+      {/* Loading */}
+      {isLoading && (
+        <div className="loader_container">
+          <LoadingAnimation />
+        </div>
+      )}
     </article>
   );
 }

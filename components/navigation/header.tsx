@@ -52,11 +52,23 @@ function MainPageHeader({ userData }: UserDataTypes) {
               </ul>
 
               <div className="_user">
-                {userData && userData.status === "success" && (
-                  <Link href={"/auth"}>
+                {userData &&
+                userData.status === "success" &&
+                userData.data.avatar ? (
+                  <Link href={"/auth/user-dashboard"}>
                     <Image
                       priority
                       src={userData.data.avatar.url}
+                      alt="user avatar"
+                      width={100}
+                      height={100}
+                    />
+                  </Link>
+                ) : (
+                  <Link href={"/auth/user-dashboard"}>
+                    <Image
+                      priority
+                      src={userAvatar}
                       alt="user avatar"
                       width={100}
                       height={100}
