@@ -11,6 +11,7 @@ interface UserTypes {
   status: string;
   data: {
     _id: string;
+    firstName: string;
   };
 }
 
@@ -51,7 +52,7 @@ export default async function UserDashboardLayout({
           {/* Header */}
           <section className="dashboard_content">
             <header className="dashboard_header">
-              <h1>მოგესალმებით, გიორგი</h1>
+              <h1>მოგესალმებით, {data.data.firstName}</h1>
               <div className="avatar">
                 <Image src={test} alt="avatar" width={50} height={50} />
               </div>

@@ -34,7 +34,7 @@ async function getData() {
   return result.json();
 }
 
-async function UserDashboardMyInfo({ params }: { params: { userID: string } }) {
+async function UserDashboardMyInfo() {
   const userData: UserInfoTypes = await getData();
 
   return (

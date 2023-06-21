@@ -7,6 +7,7 @@ import { useAppDispatch } from "@/store/hooks";
 import { userUpdate } from "@/API/auth/action";
 import LoadingAnimation from "../loading/loading";
 import PopupMiddle from "../popup/middle";
+import avatarIcon from "../../assets/icons/avatar.png";
 
 interface UserInfoTypes {
   userStatus: string;
@@ -85,12 +86,21 @@ function UserInfoChangeForm({ userStatus, userData }: UserInfoTypes) {
         <header>
           {userStatus === "success" ? (
             <div className="img">
-              <Image
-                src={userData.avatar.url}
-                alt={"avatar"}
-                width={100}
-                height={100}
-              />
+              {userData.avatar ? (
+                <Image
+                  src={userData.avatar.url}
+                  alt={"avatar"}
+                  width={100}
+                  height={100}
+                />
+              ) : (
+                <Image
+                  src={avatarIcon}
+                  alt={"avatar"}
+                  width={100}
+                  height={100}
+                />
+              )}
             </div>
           ) : (
             <p>ფოტოს ჩატვირთვა ვერ მოხერხდა</p>
