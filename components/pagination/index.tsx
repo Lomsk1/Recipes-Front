@@ -1,16 +1,27 @@
-"use client";
-
-import { getRecipeForPagination } from "@/API/receipt/action";
-import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import { useEffect, useState } from "react";
-import { useSearchParams, useRouter } from "next/navigation";
+// import { getRecipeForPagination } from "@/API/receipt/action";
+// import { useAppDispatch, useAppSelector } from "@/store/hooks";
+// import { useEffect, useState } from "react";
+// import { useSearchParams, useRouter } from "next/navigation";
 import RecipeContainerSquare from "../recipeContainer/square";
 
-interface RecipeStatsTypes {
+interface PaginationRecipesTypes {
   recipeStats: {
     status: string;
     stats: {
       numRecipes: number;
+    }[];
+  };
+  recipes: {
+    result: number;
+    status: string;
+    data: {
+      image: {
+        url: string;
+      };
+      name: string;
+      cookingTime: string;
+      difficulty: string;
+      _id: string;
     }[];
   };
 }
@@ -32,67 +43,67 @@ interface PaginationTypes {
   };
 }
 
-function PaginationRecipe({ recipeStats }: RecipeStatsTypes) {
-  const searchParams = useSearchParams();
-  const page = Number(searchParams.get("page"));
-  const limit = Number(searchParams.get("limit"));
-  const navigate = useRouter();
+function PaginationRecipe({ recipeStats, recipes }: PaginationRecipesTypes) {
+  // const searchParams = useSearchParams();
+  // const page = Number(searchParams.get("page"));
+  // const limit = Number(searchParams.get("limit"));
+  // const navigate = useRouter();
 
-  const [totalRecipes, setTotalRecipes] = useState(0);
-  const dispatch = useAppDispatch();
-  const { recipesForPagination, paginationIsLoading }: PaginationTypes =
-    useAppSelector((state) => state.recipeAPI);
+  // const [totalRecipes, setTotalRecipes] = useState(0);
+  // const dispatch = useAppDispatch();
+  // const { recipesForPagination, paginationIsLoading }: PaginationTypes =
+  //   useAppSelector((state) => state.recipeAPI);
 
-  useEffect(() => {
-    if (recipeStats && recipeStats.status === "success")
-      setTotalRecipes(
-        recipeStats.stats
-          .map((data) => data.numRecipes)
-          .reduce((acc, cur) => acc + cur)
-      );
+  // useEffect(() => {
+  //   if (recipeStats && recipeStats.status === "success")
+  //     setTotalRecipes(
+  //       recipeStats.stats
+  //         .map((data) => data.numRecipes)
+  //         .reduce((acc, cur) => acc + cur)
+  //     );
 
-    if (limit)
-      dispatch(
-        getRecipeForPagination({
-          page: page,
-          limit: limit,
-        })
-      );
+  //   if (limit)
+  //     dispatch(
+  //       getRecipeForPagination({
+  //         page: page,
+  //         limit: limit,
+  //       })
+  //     );
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
-  // Handle page change
-  const handlePageChange = (page: number) => {
-    if (limit) {
-      navigate.push(`/all-receipts?page=${page}&limit=${limit}`);
+  // // Handle page change
+  // const handlePageChange = (page: number) => {
+  //   if (limit) {
+  //     navigate.push(`/all-receipts?page=${page}&limit=${limit}`);
 
-      dispatch(
-        getRecipeForPagination({
-          page: page,
-          limit: limit,
-        })
-      );
-    }
-  };
+  //     dispatch(
+  //       getRecipeForPagination({
+  //         page: page,
+  //         limit: limit,
+  //       })
+  //     );
+  //   }
+  // };
 
-  // Calculate the total number of pages
-  const totalPages = Math.ceil(totalRecipes / limit);
+  // // Calculate the total number of pages
+  // const totalPages = Math.ceil(totalRecipes / limit);
 
-  if (paginationIsLoading) {
-    return <div>Loading...</div>;
-  }
+  // if (paginationIsLoading) {
+  //   return <div>Loading...</div>;
+  // }
 
-  const pageNumbers = [];
-  for (let i = 1; i <= totalPages; i++) {
-    pageNumbers.push(i);
-  }
+  // const pageNumbers = [];
+  // for (let i = 1; i <= totalPages; i++) {
+  //   pageNumbers.push(i);
+  // }
   return (
     <main className="pagination_recipe">
       {/* Display the current page items */}
       <article>
-        {!paginationIsLoading &&
-          recipesForPagination.data.map((item) => (
+        {recipes &&
+          recipes.data.map((item) => (
             <RecipeContainerSquare
               key={item._id}
               cookingTime={item.cookingTime}

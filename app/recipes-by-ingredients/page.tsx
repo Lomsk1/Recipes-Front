@@ -65,9 +65,6 @@ export default function ChooseIngredients() {
   };
   return (
     <main className="main_page">
-      {/* Header && NAvigation */}
-      <MainPageHeader userData={userFetch} />
-
       {/* User Choose Information */}
       <ChosenInformation />
 

@@ -1,6 +1,5 @@
 "use client";
 
-import MainPageHeader from "@/components/navigation/header";
 import { store } from "@/store/store";
 import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
@@ -44,7 +43,6 @@ export default function DashboardLayout({
   return (
     <section>
       <Provider store={store}>
-        <MainPageHeader userData={userFetch} />
         {children}
       </Provider>
     </section>
