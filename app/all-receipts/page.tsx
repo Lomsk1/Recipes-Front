@@ -46,7 +46,12 @@ export default async function AllRecipePage({
         </header>
         {/* Recipe Container */}
         {recipes && recipeStats && (
-          <PaginationRecipe recipes={recipes} recipeStats={recipeStats} />
+          <PaginationRecipe
+            recipes={recipes}
+            recipeStats={recipeStats}
+            limit={Number(searchParams.limit)}
+            page={Number(searchParams.page)}
+          />
         )}
       </section>
     </>

@@ -3,10 +3,12 @@
 // import { useEffect, useState } from "react";
 // import { useSearchParams, useRouter } from "next/navigation";
 import RecipeContainerSquare from "../recipeContainer/square";
+import ButtonsForPagination from "./buttons";
 
 interface PaginationRecipesTypes {
   recipeStats: {
     status: string;
+    total: number;
     stats: {
       numRecipes: number;
     }[];
@@ -24,6 +26,8 @@ interface PaginationRecipesTypes {
       _id: string;
     }[];
   };
+  limit: number;
+  page: number;
 }
 
 interface PaginationTypes {
@@ -43,10 +47,12 @@ interface PaginationTypes {
   };
 }
 
-function PaginationRecipe({ recipeStats, recipes }: PaginationRecipesTypes) {
-  // const searchParams = useSearchParams();
-  // const page = Number(searchParams.get("page"));
-  // const limit = Number(searchParams.get("limit"));
+function PaginationRecipe({
+  recipeStats,
+  recipes,
+  limit,
+  page,
+}: PaginationRecipesTypes) {
   // const navigate = useRouter();
 
   // const [totalRecipes, setTotalRecipes] = useState(0);
@@ -55,12 +61,6 @@ function PaginationRecipe({ recipeStats, recipes }: PaginationRecipesTypes) {
   //   useAppSelector((state) => state.recipeAPI);
 
   // useEffect(() => {
-  //   if (recipeStats && recipeStats.status === "success")
-  //     setTotalRecipes(
-  //       recipeStats.stats
-  //         .map((data) => data.numRecipes)
-  //         .reduce((acc, cur) => acc + cur)
-  //     );
 
   //   if (limit)
   //     dispatch(
@@ -117,6 +117,11 @@ function PaginationRecipe({ recipeStats, recipes }: PaginationRecipesTypes) {
 
       {/* Render pagination controls */}
       <footer>
+        <ButtonsForPagination
+          totalRecipes={recipeStats.total}
+          limit={limit}
+          page={page}
+        />
         {/* Render previous page button if not on the first page */}
         {/* {page > 1 && (
           <button onClick={() => handlePageChange(page - 1)}>წინა</button>
