@@ -5,8 +5,9 @@ import logo from "../../assets/icons/receptor-logo-removebg-preview.png";
 import NavLink from "../navLink";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
+import Link from "next/link";
 
-function DashboardSidebar({ userID }: { userID: string }) {
+function DashboardSidebar({ userID, role }: { userID: string; role: string }) {
   const navigate = useRouter();
 
   return (
@@ -41,6 +42,12 @@ function DashboardSidebar({ userID }: { userID: string }) {
             },
           ]}
         />
+
+        {role === "admin" && (
+          <Link href={`/auth/adminpanel/${userID}`} className="adminPanel">
+            ადმინი
+          </Link>
+        )}
 
         <button
           onClick={() => {

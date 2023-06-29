@@ -6,8 +6,15 @@ import NavLink from "../navLink";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
 import { RemoveScroll } from "react-remove-scroll";
+import Link from "next/link";
 
-function UserSidebarForMobile({ userID }: { userID: string }) {
+function UserSidebarForMobile({
+  userID,
+  role,
+}: {
+  userID: string;
+  role: string;
+}) {
   const { userSidebarIsOpen } = useAppSelector((state) => state.sidebar);
   const navigate = useRouter();
 
@@ -45,6 +52,14 @@ function UserSidebarForMobile({ userID }: { userID: string }) {
                   },
                 ]}
               />
+              {role === "admin" && (
+                <Link
+                  href={`/auth/adminpanel/${userID}`}
+                  className="adminPanel"
+                >
+                  ადმინი
+                </Link>
+              )}
               <button
                 onClick={() => {
                   Cookies.remove("jwt");

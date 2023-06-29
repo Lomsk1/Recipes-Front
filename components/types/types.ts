@@ -46,6 +46,20 @@ export interface IngredientsType {
   _id: string;
 }
 
+export interface IngredientCategoryTypes {
+  status: string;
+  result: number;
+  data: {
+    name: string;
+    _id: string;
+    createdAt: Date;
+    ingredients: {
+      name: string;
+      _id: string;
+    }[];
+  }[];
+}
+
 export interface CommentTypes {
   _id: string;
   comment: string;
@@ -56,4 +70,21 @@ export interface CommentTypes {
   };
   createdAt: Date;
   receipt: string;
+}
+
+export interface UserTypes {
+  status: string;
+  data: {
+    avatar: {
+      public_id: string;
+      url: string;
+    };
+    _id: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    role: string;
+    passwordChangedAt: Date;
+    favorites: {}[];
+  };
 }

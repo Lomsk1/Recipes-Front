@@ -1,5 +1,5 @@
 .dashboard_sidebar {
-  width: 150px;
+  width: 200px;
   display: flex;
   flex-direction: column;
   padding: 10px 5px;
@@ -21,6 +21,15 @@
     display: flex;
     gap: 10px;
     flex-direction: column;
+    .adminPanel {
+      background-color: rgba(0, 0, 0, 0.363);
+      color: $dark_orange;
+      letter-spacing: 2px;
+      &:hover {
+        color: $dark_Red;
+        background-color: rgba(0, 0, 0, 0.884);
+      }
+    }
     a {
       text-decoration: none;
       color: $white_color;

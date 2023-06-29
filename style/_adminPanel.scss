@@ -1,0 +1,94 @@
+.adminPanel_layout {
+  display: flex;
+  background-color: $dashboard_main_color_blue;
+}
+.section_content {
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.admin_sidebar {
+  width: 200px;
+  min-width: 200px;
+  min-height: 100vh;
+  border-right: 1px solid $dark_blue;
+  header {
+    aspect-ratio: 1/1;
+    width: 100%;
+    a {
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: center;
+        cursor: pointer;
+      }
+    }
+  }
+  nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+    padding-left: 10px;
+    a {
+      text-decoration: none;
+      color: $white_color;
+      font-weight: 700;
+      letter-spacing: 1px;
+      padding: 10px;
+      transition: 500ms;
+      border-radius: 20px;
+      border-top-right-radius: 1px;
+      border-bottom-right-radius: 1px;
+      &:hover {
+        background-color: $black_bg_light;
+        transition: 500ms;
+      }
+    }
+    .active {
+      transition: 500ms;
+      color: $dashboard_main_color_blue;
+      background-color: $dark_orange;
+      &:hover {
+        color: $dashboard_main_color_blue;
+        background-color: $dark_orange;
+      }
+    }
+    .back_to {
+      color: #d00000;
+      background-color: rgba(0, 0, 0, 0.363);
+    }
+  }
+}
+.adminPanel_title {
+  margin-top: 50px;
+  h1 {
+    font-size: 1.5rem;
+    color: $light_white;
+    letter-spacing: 2px;
+  }
+}
+.table_container {
+  margin-top: 150px;
+  min-height: 40px;
+  width: 100%;
+}
+.add_button {
+  margin-bottom: 40px;
+  button {
+    padding: 10px 30px;
+    background-color: $light_green;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    color: $white_color;
+    letter-spacing: 1px;
+    transition: background-color 500ms;
+    &:hover {
+      background-color: $dark_green;
+      transition: 500ms;
+    }
+  }
+}

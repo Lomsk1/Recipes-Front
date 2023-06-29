@@ -12,6 +12,7 @@ interface UserTypes {
   data: {
     _id: string;
     firstName: string;
+    role: string;
   };
 }
 
@@ -46,9 +47,12 @@ export default async function UserDashboardLayout({
       {data.status === "success" ? (
         <section className="user_dashboard">
           {/* Side bar */}
-          <DashboardSidebar userID={data.data._id} />
+          <DashboardSidebar userID={data.data._id} role={data.data.role} />
           <UserSidebarBurger />
-          <UserDashboardSideProvider />
+          <UserDashboardSideProvider
+            userID={data.data._id}
+            role={data.data.role}
+          />
           {/* Header */}
           <section className="dashboard_content">
             <header className="dashboard_header">
