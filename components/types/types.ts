@@ -42,8 +42,13 @@ export interface RecipeTypes {
 }
 
 export interface IngredientsType {
-  name: string;
-  _id: string;
+  status: string;
+  result: number;
+  data: {
+    name: string;
+    _id: string;
+    category: [];
+  }[];
 }
 
 export interface IngredientCategoryTypes {

@@ -1,4 +1,6 @@
 import AdminSideBar from "@/components/admin/sidebar";
+import AdminSidebarBurger from "@/components/admin/sidebar/burger";
+import AdminSidebarMobileProvider from "@/components/providerElements/admin/sidebar";
 import { UserTypes } from "@/components/types/types";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
@@ -33,6 +35,8 @@ export default async function AdminPanelLayout({
   return (
     <section className="adminPanel_layout">
       <AdminSideBar userID={user.data._id} />
+      <AdminSidebarBurger />
+      <AdminSidebarMobileProvider userID={user.data._id} />
       <section className="section_content"> {children}</section>
     </section>
   );

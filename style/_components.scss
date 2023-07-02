@@ -1326,7 +1326,7 @@
         background-color: $error_red;
       }
     }
-    .change{
+    .change {
       background-color: $dark_orange;
       color: $white_color;
       transition: background-color 500ms;
@@ -1370,7 +1370,11 @@
     display: flex;
     flex-direction: column;
     gap: 30px;
-    input {
+    @media (max-width: 550px) {
+      width: 85vw;
+    }
+    input,
+    select {
       width: 400px;
       height: 40px;
       outline: none;
@@ -1380,11 +1384,54 @@
       padding: 10px;
       color: $white_color;
       letter-spacing: 1px;
+      @media (max-width: 550px) {
+        width: 100%;
+      }
+    }
+    select {
+      background-color: $dark_blue_bg;
     }
     button {
       width: fit-content;
       padding: 7px 40px;
       margin: 0 auto;
+      background-color: $light_orange;
+      border: none;
+      cursor: pointer;
+      border-radius: 100px;
+      color: $dark_blue;
+      letter-spacing: 1px;
+      font-weight: 700;
+      transition: background-color 500ms;
+      &:hover {
+        background-color: $dark_orange;
+        transition: 500ms;
+      }
+    }
+  }
+}
+.search_ {
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    input {
+      width: 250px;
+      height: 40px;
+      outline: none;
+      border-radius: 5px;
+      border: 1px solid $light_orange;
+      background-color: transparent;
+      padding: 10px;
+      color: $white_color;
+      letter-spacing: 1px;
+      @media (max-width: 400px) {
+        width: 80%;
+      }
+    }
+    button {
+      width: fit-content;
+      padding: 7px 40px;
       background-color: $light_orange;
       border: none;
       cursor: pointer;
