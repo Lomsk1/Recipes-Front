@@ -41,6 +41,16 @@ export interface RecipeTypes {
   ratingsQuantity: number | null;
 }
 
+export interface RecipeCategory {
+  status: string;
+  result: number;
+  data: {
+    _id: string;
+    name: string;
+    createdAt: Date;
+  }[];
+}
+
 export interface IngredientsType {
   status: string;
   result: number;
