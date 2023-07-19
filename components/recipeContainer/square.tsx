@@ -19,7 +19,7 @@ function RecipeContainerSquare({
   return (
     <Link href={`/all-receipts/${id}`} className="recipe_container_square">
       <div className="image">
-        <Image src={imageUrl ? imageUrl : ''} alt="recipe" width={50} height={50} />
+        <Image src={imageUrl ? imageUrl : ''} alt="recipe" width={500} height={500} />
       </div>
       <div className="title">
         <p>{name && name}</p>

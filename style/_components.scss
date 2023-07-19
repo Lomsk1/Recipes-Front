@@ -1288,6 +1288,8 @@
     color: $white_color;
     letter-spacing: 1px;
     background-color: $dark_blue_bg;
+    word-wrap: break-word;
+    word-break: break-all;
   }
   td,
   th {
@@ -1295,8 +1297,9 @@
     text-align: left;
     padding: 8px;
     text-align: center;
+    word-wrap: break-word;
+    word-break: break-all;
   }
-
   tr:nth-child(even) {
     background-color: cadetblue;
     color: $black_color;
@@ -1304,8 +1307,19 @@
   tr:nth-child(odd) {
     color: $white_color;
   }
+  a {
+    color: $light_blue;
+    font-size: 700;
+    letter-spacing: 1px;
+    // text-decoration: none;
+    transition: color 500ms;
+    &:hover {
+      transition: 500ms;
+      color: $light_Red;
+    }
+  }
   .actions {
-    display: flex;
+    // display: flex;
     flex-direction: column;
     gap: 5px;
     button {

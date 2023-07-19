@@ -1,6 +1,18 @@
+import Image from "next/image";
+import Link from "next/link";
+
 interface DataTypes {
   _id: string;
   name: string;
+  author: {
+    avatar: {
+      public_id: string;
+      url: string;
+    };
+    firstName: string;
+    _id: string;
+    lastName: string;
+  };
 }
 
 function Table({
@@ -12,7 +24,7 @@ function Table({
   header: any;
   data: DataTypes[];
   deleteHandler: any;
-  changeHandler: any;
+  changeHandler?: any;
 }) {
   return (
     <>
@@ -31,6 +43,16 @@ function Table({
               <tr key={data._id}>
                 {/* {data._id && <th>{data._id}</th>} */}
                 {data.name && <td>{data.name}</td>}
+                {data.author && (
+                  <td>
+                    {data.author.firstName} {data.author.lastName}
+                  </td>
+                )}
+                {header.includes("ლინკი") && (
+                  <td>
+                    <Link href={`/all-receipts/${data._id}`}>ლინკი</Link>
+                  </td>
+                )}
 
                 {/* Actions */}
                 {/* <TableActions
@@ -44,12 +66,20 @@ function Table({
                   >
                     წაშლა
                   </button>
-                  <button
+                  {changeHandler && (
+                    <button
+                      className="change"
+                      onClick={() => changeHandler(data._id)}
+                    >
+                      ცვლილება
+                    </button>
+                  )}
+                  {/* <button
                     className="change"
                     onClick={() => changeHandler(data._id)}
                   >
                     ცვლილება
-                  </button>
+                  </button> */}
                 </td>
               </tr>
             ))}

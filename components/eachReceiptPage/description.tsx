@@ -1,9 +1,9 @@
 import RecipeCommentSection from "../coments";
-import { RecipeTypes } from "../types/types";
+import { RecipeOneTypes } from "../types/types";
 
 interface RecipeProps
   extends Omit<
-    RecipeTypes,
+    RecipeOneTypes["data"],
     | "recipeCategory"
     | "author"
     | "createdAt"

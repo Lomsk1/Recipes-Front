@@ -1,44 +1,103 @@
+export interface RecipeOneTypes {
+  status: string;
+  result: number;
+  data: {
+    _id: string;
+    recipeCategory: {
+      name: string;
+      _id: string;
+    };
+    author: {
+      avatar: {
+        public_id: string;
+        url: string;
+      };
+      firstName: string;
+      lastName: string;
+      _id: string;
+    };
+    cookingProcess: {
+      description: string;
+      step: number;
+      _id: string;
+    }[];
+    cookingTime: string;
+    image: {
+      public_id: string;
+      url: string;
+    };
+    createdAt: Date;
+    difficulty: string;
+    ingredients: {
+      name: string;
+      _id: string;
+    }[];
+    nutrition: {
+      name: string;
+      weight: number;
+      _id: string;
+    }[];
+    shortDescription: string;
+    name: string;
+    necessaryIngredients: {
+      name: string;
+      _id: string;
+    }[];
+    portion: number;
+    ratingsAverage: number | null;
+    ratingsQuantity: number | null;
+  };
+}
+
 export interface RecipeTypes {
-  _id: string;
-  recipeCategory: {
+  status: string;
+  result: number;
+  data: {
+    _id: string;
+    recipeCategory: {
+      name: string;
+      _id: string;
+    };
+    author: {
+      avatar: {
+        public_id: string;
+        url: string;
+      };
+      firstName: string;
+      lastName: string;
+      _id: string;
+    };
+    cookingProcess: {
+      description: string;
+      step: number;
+      _id: string;
+    }[];
+    cookingTime: string;
+    image: {
+      public_id: string;
+      url: string;
+    };
+    createdAt: Date;
+    difficulty: string;
+    ingredients: {
+      name: string;
+      _id: string;
+    }[];
+    nutrition: {
+      name: string;
+      weight: number;
+      _id: string;
+    }[];
+    shortDescription: string;
     name: string;
-    _id: string;
-  };
-  author: {
-    avatar: string;
-    firstName: string;
-    _id: string;
-  };
-  cookingProcess: {
-    description: string;
-    step: number;
-    _id: string;
+    necessaryIngredients: {
+      name: string;
+      _id: string;
+    }[];
+    portion: number;
+    ratingsAverage: number | null;
+    ratingsQuantity: number | null;
   }[];
-  cookingTime: string;
-  image: {
-    public_id: string;
-    url: string;
-  };
-  createdAt: Date;
-  difficulty: string;
-  ingredients: {
-    name: string;
-    _id: string;
-  }[];
-  nutrition: {
-    name: string;
-    weight: number;
-    _id: string;
-  }[];
-  shortDescription: string;
-  name: string;
-  necessaryIngredients: {
-    name: string;
-    _id: string;
-  }[];
-  portion: number;
-  ratingsAverage: number | null;
-  ratingsQuantity: number | null;
 }
 
 export interface RecipeCategory {
@@ -81,7 +140,11 @@ export interface CommentTypes {
   user: {
     _id: string;
     firstName: string;
-    avatar: string;
+    lastName: string;
+    avatar: {
+      public_id: string;
+      url: string;
+    };
   };
   createdAt: Date;
   receipt: string;
