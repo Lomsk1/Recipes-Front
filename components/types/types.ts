@@ -124,12 +124,12 @@ export interface IngredientCategoryTypes {
   status: string;
   result: number;
   data: {
-    name: string;
-    _id: string;
-    createdAt: Date;
-    ingredients: {
-      name: string;
-      _id: string;
+    name?: string;
+    _id?: string;
+    createdAt?: Date;
+    ingredients?: {
+      name?: string;
+      _id?: string;
     }[];
   }[];
 }

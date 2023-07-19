@@ -76,7 +76,7 @@ function IngredientCategoryTable({}: //   data,
           {ingredientData?.status === "success" && (
             <Table
               header={["სახელი"]}
-              data={ingredientData?.data}
+              data={ingredientData.data}
               deleteHandler={deleteIngCategory}
               changeHandler={changeIngCategory}
             />

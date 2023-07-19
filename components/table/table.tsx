@@ -1,17 +1,19 @@
 import Image from "next/image";
 import Link from "next/link";
+import { IngredientCategoryTypes } from "../types/types";
 
 interface DataTypes {
-  _id: string;
-  name: string;
-  author: {
+  _id?: string;
+  name?: string;
+  author?: {
     avatar: {
       public_id: string;
       url: string;
     };
-    firstName: string;
-    _id: string;
-    lastName: string;
+    firstName?: string;
+    _id?: string;
+    lastName?: string;
+    createdAt?: Date;
   };
 }
 

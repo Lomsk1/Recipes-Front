@@ -10,7 +10,7 @@ import checkIcon from "../../assets/svg/circle-check-solid.svg";
 import Link from "next/link";
 import { useAppDispatch } from "@/store/hooks";
 import { setSideRecipeToggle } from "@/redux/client/receipts/slice";
-import { RecipeTypes } from "../types/types";
+import { RecipeOneTypes } from "../types/types";
 import {
   createRecipeFavorite,
   deleteRecipeFavoriteApi,
@@ -18,7 +18,7 @@ import {
 
 interface RecipeProps
   extends Omit<
-    RecipeTypes,
+    RecipeOneTypes["data"],
     | "recipeCategory"
     | "author"
     | "cookingProcess"
