@@ -43,7 +43,7 @@ function ChosenInformation() {
         <aside>
           {/* Ingredients */}
           {redux && redux.ingredients.length > 0 ? (
-            redux.ingredients.map((data: IngredientsType) => (
+            redux.ingredients.map((data: any) => (
               <div key={data._id}>
                 <p>{data.name}</p>
                 <button

@@ -116,7 +116,7 @@ export interface IngredientsType {
   data: {
     name: string;
     _id: string;
-    category: [];
+    category?: [];
   }[];
 }
 
