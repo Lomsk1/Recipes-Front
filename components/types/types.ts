@@ -166,3 +166,20 @@ export interface UserTypes {
     favorites: {}[];
   };
 }
+export interface UsersTypes {
+  status: string;
+  result: number;
+  data: {
+    avatar: {
+      public_id: string;
+      url: string;
+    };
+    _id: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    role: string;
+    passwordChangedAt: Date;
+    favorites: {}[];
+  }[];
+}
